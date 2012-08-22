@@ -11,7 +11,7 @@ FactoryGirl.define do
       account FactoryGirl.build :account
     end
     
-    factory :client do
+    factory :clientnonmember do
       role_id 2
       account FactoryGirl.build :account
     end
@@ -19,6 +19,12 @@ FactoryGirl.define do
     factory :clientmember do
       role_id 2
       account FactoryGirl.build :member
+    end
+
+    factory :therapist do
+      role_id 3
+      account FactoryGirl.build :account
+
     end
   end
 end
