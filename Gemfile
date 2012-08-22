@@ -11,7 +11,12 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'i18n-js'
+gem 'execjs'
+gem 'therubyracer'
 
+gem 'rspec-rails', :group => [:development, :test]
+gem "cucumber-rails", :group => :test
+gem 'factory_girl_rails', :group => [:development, :test]
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -28,12 +33,9 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-webkit'
-  gem "selenium-webdriver"
-  gem 'cucumber-rails'
+  gem 'email_spec'
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
+  gem 'launchy'
 end
 
 
@@ -48,6 +50,3 @@ end
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
