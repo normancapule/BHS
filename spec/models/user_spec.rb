@@ -11,22 +11,17 @@ describe User do
     no_uname_user.should_not be_valid
   end
   
+  it "should reject duplicate usernames" do
+    @user.save
+    user_with_duplicate_uname = FactoryGirl.build :user
+    user_with_duplicate_uname.username = @user.username
+    user_with_duplicate_uname.should_not be_valid
+  end
+  
   it "should require an email address" do
     no_email_user = @user
     no_email_user.email = ""
     no_email_user.should_not be_valid
-  end
-  
-  it "should require a role" do
-    user = @user
-    user.role_id = nil
-    user.should_not be_valid
-  end
-  
-  it "should require have an account" do
-    user = @user
-    user.account_id = nil
-    user.should_not be_valid
   end
   
   it "should reject invalid email addresses" do
@@ -38,20 +33,25 @@ describe User do
     end
   end
   
-  it "should reject duplicate email addresses" do
+  it "should reject duplicate emails" do
     @user.save
-    user_with_duplicate_email = FactoryGirl.build :user
-    user_with_duplicate_email.email = @user.email
-    user_with_duplicate_email.should_not be_valid
+    user = FactoryGirl.build :user
+    user.email = @user.email
+    user.should_not be_valid
   end
   
-  it "should reject duplicate usernames" do
-    @user.save
-    user_with_duplicate_uname = FactoryGirl.build :user
-    user_with_duplicate_uname.username = @user.username
-    user_with_duplicate_uname.should_not be_valid
+  it "should require a role" do
+    user = @user
+    user.role_id = nil
+    user.should_not be_valid
   end
-
+  
+  it "should require to have an account" do
+    user = @user
+    user.account_id = nil
+    user.should_not be_valid
+  end
+  
   describe "passwords" do
     it "should have a password attribute" do
       @user.should respond_to(:password)

@@ -8,8 +8,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :role_id, :account_id
   # attr_accessible :title, :body
+  validates_associated :account
+  validates_presence_of :role_id, :account_id, :email, :username
+  validates_uniqueness_of :username, :email
   
   belongs_to :account
-  validates_presence_of :role_id, :account_id, :email, :username
-  validates_uniqueness_of :username
+
+  def self.different_roles
+    {"1"=>"admin", "2"=>"client", "3"=>"therapist"}
+  end
 end

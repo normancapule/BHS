@@ -2,11 +2,14 @@
 
 FactoryGirl.define do
   factory :account do
-    name "MyString"
-    nickname "MyString"
+    firstname "FName"
+    lastname "LName"
+    nickname "Memes"
     cellphone 1
-    address "MyText"
+    address "Text"
     birthday "2012-08-22"
-    membership_id 1
+    factory :member do
+      association :membership, :strategy => :build
+    end
   end
 end

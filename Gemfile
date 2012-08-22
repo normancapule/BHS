@@ -14,8 +14,6 @@ gem 'i18n-js'
 gem 'execjs'
 gem 'therubyracer'
 
-gem 'rspec-rails', :group => [:development, :test]
-gem "cucumber-rails", :group => :test
 gem 'factory_girl_rails', :group => [:development, :test]
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,6 +34,8 @@ group :test do
   gem 'email_spec'
   gem 'database_cleaner'
   gem 'launchy'
+  gem "cucumber-rails"
+  gem 'rspec-rails'
 end
 
 
