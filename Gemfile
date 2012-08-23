@@ -36,6 +36,7 @@ group :test do
   gem 'launchy'
   gem "cucumber-rails"
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 
 

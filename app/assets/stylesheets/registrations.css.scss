@@ -1,0 +1,13 @@
+div.new-user-body {
+  padding-top:50px;
+  width:940px;
+  margin:0 auto;
+  div.left, div.right {float:left;}
+  div.left {
+    padding-right: 40px;
+    border-right: 2px solid #CCC;
+  }
+  div.right {
+    padding-left: 40px;
+  }
+}

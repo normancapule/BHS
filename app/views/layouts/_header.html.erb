@@ -1,0 +1,11 @@
+<div class="master-page-header">
+  <div class="navbar main-bar">
+    <% if current_user %>
+      <span>Hello <%= link_to "#{current_user.account.firstname} #{current_user.account.lastname}" %></span>
+      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path%>
+      <%= link_to "Sign Up", new_user_registration_path%>
+    <% end %>
+  </div>
+</div>

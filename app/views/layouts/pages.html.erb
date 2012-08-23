@@ -7,10 +7,14 @@
 </head>
 <body>
   <%= render :template => 'layouts/_header' %>
-  <div class="application-body">
-    <%= yield %>
+  <div class="container main-body">
+    <div class="content">
+      <%= render :template => 'layouts/_sidebar' %>
+      <%= yield %>
+    </div>
   </div>
   <!-- Place all JS at the end of the document (for faster loading) -->
   <%= javascript_include_tag "application" %>
 </body>
 </html>
+<%= yield :pages_assets %>

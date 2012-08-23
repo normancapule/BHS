@@ -1,3 +1,39 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.hidden {display:none;}
+
+div.master-page-header {
+  position:fixed;
+  width:100%;
+  z-index:100;
+  div.navbar.main-bar {
+    background-color: #2C2C2C;
+    width: 940px;
+    height: 50px;
+    border-radius: 10px / 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    margin: 0px auto;
+  }
+}
+
+div.application-body {
+  position:fixed;
+  width:100%;
+  margin-left:8px;
+}
+
+div.master-page-sidebar {
+  float:left;
+  margin-left:8px;
+  div.sidebar.main-bar {
+    ul.options { list-style:none; padding:0px; margin:0px;}
+  }
+}
+
+div.container.main-body {
+  position:fixed;
+  width:100%;
+  div.content {
+    padding-top:50px;
+    width:940px;
+    margin:0 auto;
+  }
+}
