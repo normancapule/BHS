@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :service do
     name "MyString"
-    type 1
+    service_type 1
     member_price_morn 0.0
     member_price_eve 0.0
     regular_price 0.0

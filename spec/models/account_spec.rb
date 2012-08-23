@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Account do
   before(:each) do 
-    @user = FactoryGirl.build :client
+    @user = FactoryGirl.build :clientnonmember
     @account = @user.account
+    @memberaccount = FactoryGirl.build(:clientmember).account
   end
 
   it "should have first and last names" do
@@ -19,5 +20,9 @@ describe Account do
   it "should have a valid birth date" do
     @account.birthday = 1241241241251512
     @account.should_not be_valid
+  end
+
+  it "should have membership details if member" do
+    @memberaccount.membership.should_not be_nil
   end
 end

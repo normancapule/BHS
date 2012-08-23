@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email
   
   belongs_to :account
+  has_many :transactions
 
   def self.different_roles
     {"1"=>"admin", "2"=>"client", "3"=>"therapist"}
