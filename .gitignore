@@ -13,6 +13,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/coverage
-/.sass-cache
-.gitignore
+
+config/database.yml
+public/assets/
+log/*.log
+coverage/
+.sass-cache/
+public/assets/
