@@ -1,6 +1,27 @@
-.hidden {display:none;}
+/********** GLOBALS **********/
+.hidden { display:none; }
+.container-clearer { clear:both; }
+h2 { border-bottom: 2px solid #CCC; }
+.bold { font-weight:bold;  }
+.field_with_errors { color:red; display:inline}
 
+/********** DEFAULT BODY **********/
+div.application-body {
+  font-family: Helvetica,Arial,sans-serif;
+  position:fixed;
+  width:100%;
+  div.page-container {
+    padding-top:50px;
+    width:920px;
+    margin:0 auto;
+    border: 2px solid #CCC;
+  }
+}
+
+/********** PAGE HEADER **********/
 div.master-page-header {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 14px;
   position:fixed;
   width:100%;
   z-index:100;
@@ -11,16 +32,19 @@ div.master-page-header {
     border-radius: 10px / 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     margin: 0px auto;
+    div.links {
+      span {padding: 15px 4px 0px 0px;}
+      span,a {float:right; color:white;}
+      a {text-decoration:underline; padding:15px 20px 0px 0px; font-weight:bold;}
+      a:hover {color:#008000;}
+
+    }
   }
 }
 
-div.application-body {
-  position:fixed;
-  width:100%;
-  margin-left:8px;
-}
-
+/********** PAGE SIDEBAR **********/
 div.master-page-sidebar {
+  font-family: Helvetica,Arial,sans-serif;
   float:left;
   margin-left:8px;
   div.sidebar.main-bar {
@@ -28,7 +52,9 @@ div.master-page-sidebar {
   }
 }
 
+/********** PAGE BODY **********/
 div.container.main-body {
+  font-family: Helvetica,Arial,sans-serif;
   position:fixed;
   width:100%;
   div.content {

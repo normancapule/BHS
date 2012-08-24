@@ -8,7 +8,9 @@
 <body>
   <%= render :template => 'layouts/_header' %>
   <div class="application-body">
-    <%= yield %>
+    <div class="page-container">
+      <%= yield %>
+    </div>
   </div>
   <!-- Place all JS at the end of the document (for faster loading) -->
   <%= javascript_include_tag "application" %>
