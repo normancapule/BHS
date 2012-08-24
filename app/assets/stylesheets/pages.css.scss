@@ -8,7 +8,6 @@ h2 { border-bottom: 2px solid #CCC; }
 /********** DEFAULT BODY **********/
 div.application-body {
   font-family: Helvetica,Arial,sans-serif;
-  position:fixed;
   width:100%;
   div.page-container {
     padding-top:50px;
@@ -55,7 +54,6 @@ div.master-page-sidebar {
 /********** PAGE BODY **********/
 div.container.main-body {
   font-family: Helvetica,Arial,sans-serif;
-  position:fixed;
   width:100%;
   div.content {
     padding-top:50px;

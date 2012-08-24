@@ -1,21 +1,30 @@
-<h2>Sign in</h2>
-
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div>
-    <%= f.label :username %><br />
-    <%= f.text_field :username, :required => true %>
+<div class="sign-in user-body">
+  <h2>Sign in</h2>
+  <div class="errors <%= !flash.empty? ? '' : 'hidden' %>">
+    <p>Notice:<p>
+    <ul>
+      <% flash.each do |name, msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
 
-  <div>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <div>
+      <%= f.label :username %><br />
+      <%= f.text_field :username, :required => true %>
+    </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <div>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+    <% if devise_mapping.rememberable? -%>
+      <div id="remember-me"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <% end -%>
 
-<%= render "devise/shared/links" %>
+    <div><%= f.submit "Sign in" %></div>
+    <div><%= link_to "Forgot your password?", new_user_password_path %></div>
+  <% end %>
+</div>

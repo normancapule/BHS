@@ -18,11 +18,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @errors = true
       @new_account.valid?
       clean_up_passwords(@new_user)
-      render "registrations/new"
+      render "users/registrations/new"
     end
   end
 
   def update
-
+    user = params[:user]
+    account = user[:account]
+    @user = User.find_by_username user[:username]
+    @account = @user.account
+    user.delete :account
+    if @user.update_with_password(user) and @account.update_attributes(account)
+      redirect_to root_url
+    else
+      @errors = true
+      clean_up_passwords(@new_user)
+      render "users/registrations/edit"
+    end
   end
 end

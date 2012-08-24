@@ -3,7 +3,7 @@
     <div class="links">
       <% if current_user %>
         <%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>
-        <%= link_to "#{current_user.account.firstname} #{current_user.account.lastname}" %><span>Logged in as</span>
+        <%= link_to "#{current_user.account.firstname} #{current_user.account.lastname}", edit_user_registration_path %><span>Logged in as</span>
       <% else %>
         <%= link_to "Sign Up", new_user_registration_path%>
         <%= link_to "Sign In", new_user_session_path%>

@@ -1,0 +1,19 @@
+div.new-user, div.edit-user {
+  div.left, div.right {float:left;}
+  div.left {
+    padding-right: 40px;
+    border-right: 2px solid #CCC;
+  }
+  div.right {
+    padding-left: 40px;
+  }
+}
+
+div.sign-in {
+  #remember-me { padding-bottom:10px;  }
+  form { margin:0px; }
+}
+
+div.user-body {
+  padding: 0px 15px 15px 15px;
+}
