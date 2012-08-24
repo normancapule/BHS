@@ -5,8 +5,9 @@ describe Reservation do
     @reserv = FactoryGirl.build :reservation
   end
 
-  it "should have a valid datetime" do
-    @reserv.datetime = 1241251251515152
-    @reserv.should_not be_valid
+  before(:each) do 
+    @reserv = FactoryGirl.build :reservation
   end
+
+  pending "add some examples to (or delete) #{__FILE__}"
 end

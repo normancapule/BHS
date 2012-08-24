@@ -10,6 +10,12 @@ FactoryGirl.define do
       account FactoryGirl.build :account
     end
     
+    factory :testadmin do
+      username 'admin'
+      email 'admin@example.com'
+      role_id 1
+    end
+
     factory :clientnonmember do
       username 'clientnonmember'
       email 'cnm@example.com'

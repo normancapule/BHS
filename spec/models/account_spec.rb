@@ -12,11 +12,6 @@ describe Account do
     @account.lastname.should_not be_nil
   end
 
-  it "should have a valid birth date" do
-    @account.birthday = 1241241241251512
-    @account.should_not be_valid
-  end
-
   it "should have membership details if member" do
     @memberaccount.membership.should_not be_nil
   end

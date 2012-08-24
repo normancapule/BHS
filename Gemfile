@@ -13,6 +13,7 @@ gem 'backbone-on-rails'
 gem 'i18n-js'
 gem 'execjs'
 gem 'therubyracer'
+gem 'will_paginate'
 
 gem 'factory_girl_rails', :group => [:development, :test]
 # Gems used only for assets and not required

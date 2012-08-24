@@ -1,3 +1,12 @@
-<div id="index-body">
-  <h1>TESTING</h1>
-</div>
+<% if current_user %>
+  <div id="index-body" class="page-body">
+    <h2> Hello! </h2>
+    <div id="reservation-list">
+      <%= render :partial => "reservation_list" %>
+    </div>
+  </div>
+<% else %>
+  
+<% end %>
+
+<div class="container-clearer"></div>

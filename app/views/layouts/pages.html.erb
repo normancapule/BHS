@@ -3,12 +3,13 @@
 <head>
   <title>BHS-Binan Laguna</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "pages/" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <%= render :template => 'layouts/_header' %>
-  <div class="container main-body">
-    <div class="content">
+  <div class="application-body">
+    <div class="page-container">
       <%= render :template => 'layouts/_sidebar' %>
       <%= yield %>
     </div>
