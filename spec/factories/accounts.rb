@@ -8,8 +8,22 @@ FactoryGirl.define do
     cellphone 1
     address "Text"
     birthday "2012-08-22"
-    factory :member do
+    
+    factory :adminaccount do
+      role_id 1
+    end
+
+    factory :client_non_member_account do
+      role_id 2
+    end
+
+    factory :client_member_account do
+      role_id 2
       association :membership, :strategy => :build
+    end
+    
+    factory :therapist_account do
+      role_id 3
     end
   end
 end

@@ -1,11 +1,14 @@
 <div class="master-page-sidebar">
   <div class="sidebar main-bar">
-    <ul class="options">
-      <li><%= link_to "Transactions", "#" %></li>
-      <li><%= link_to "Customers", "#" %></li>
-      <li><%= link_to "Personnel", "#" %></li>
-      <li><%= link_to "Services", "#" %></li>
-      <li><%= link_to "Reservations", "#" %></li>
-    </ul>
+    <% if current_user %>
+      <ul class="options unstyled">
+        <li><%= link_to "Transactions", transactions_path %></li>
+        <li><%= link_to "Reservations", "#" %></li>
+        <li><%= link_to "Customers", "#" %></li>
+        <li><%= link_to "Therapists", "#" %></li>
+        <li><%= link_to "Services", "#" %></li>
+      </ul>
+    <% else %>
+    <% end %>
   </div>
 </div>

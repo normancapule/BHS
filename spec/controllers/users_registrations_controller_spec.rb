@@ -22,7 +22,7 @@ describe Users::RegistrationsController do
   describe "POST 'create'" do
     before(:each) do
       @user = FactoryGirl.attributes_for :testadmin
-      @user[:account] = FactoryGirl.attributes_for :account
+      @user[:account] = FactoryGirl.attributes_for :adminaccount
     end
     
     it "should redirect to root if successfully created a user" do

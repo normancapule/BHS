@@ -9,5 +9,8 @@ Bhs::Application.routes.draw do
     match 'login' => 'users/sessions#new'
     match 'logout' => 'users/sessions#destroy'
   end
+
+  resources :transactions
+
   root :to => "pages#index"
 end

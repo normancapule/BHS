@@ -1,13 +1,22 @@
-<div class="master-page-header">
-  <div class="navbar main-bar">
-    <div class="links">
-      <% if current_user %>
-        <%= link_to "Sign Out", destroy_user_session_path, :method => :delete%>
-        <%= link_to "#{current_user.account.firstname} #{current_user.account.lastname}", edit_user_registration_path %><span>Logged in as</span>
-      <% else %>
-        <%= link_to "Sign Up", new_user_registration_path%>
-        <%= link_to "Sign In", new_user_session_path%>
-      <% end %>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Banahaw Heals Spa", root_path, :class=>"brand" %>
+      <ul class="nav pull-right user-session">
+        <% if current_user %>
+          <li class="divider-vertical"></li>          
+          <li><p class="navbar-text">Logged in as <%= link_to "#{current_user.account.firstname} #{current_user.account.lastname}", edit_user_registration_path, :class => "navbar-link" %></p></li>
+          <li class="divider-vertical"></li>          
+          <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete%></li>
+          <li class="divider-vertical"></li>          
+        <% else %>
+          <li class="divider-vertical"></li>          
+          <li><%= link_to "Sign In", new_user_session_path%></li>
+          <li class="divider-vertical"></li>          
+          <li><%= link_to "Sign Up", new_user_registration_path%></li>
+          <li class="divider-vertical"></li>          
+        <% end %>
+      </p>
     </div>
   </div>
 </div>

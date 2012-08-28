@@ -4,7 +4,7 @@ class TransactionDetail < ActiveRecord::Base
   belongs_to :service
   belongs_to :transaction
 
-  def self.different_price_types
+  def self.price_types
     {}
   end
 end

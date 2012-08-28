@@ -6,35 +6,31 @@ FactoryGirl.define do
     factory :admin do
       username 'admin'
       email 'admin@example.com'
-      role_id 1
-      account FactoryGirl.build :account
+      account FactoryGirl.build :adminaccount
     end
     
     factory :testadmin do
       username 'admin'
       email 'admin@example.com'
-      role_id 1
+      account FactoryGirl.build :adminaccount
     end
 
     factory :clientnonmember do
       username 'clientnonmember'
       email 'cnm@example.com'
-      role_id 2
-      account FactoryGirl.build :account
+      account FactoryGirl.build :client_non_member_account
     end
 
     factory :clientmember do
       username 'clientmember'
       email 'cm@example.com'
-      role_id 2
-      account FactoryGirl.build :member
+      account FactoryGirl.build :client_member_account
     end
 
     factory :therapist do
       username 'therapist'
       email 'tp@example.com'
-      role_id 3
-      account FactoryGirl.build :account
+      account FactoryGirl.build :therapist_account
     end
   end
 end

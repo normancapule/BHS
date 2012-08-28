@@ -25,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     user = params[:user]
     account = user[:account]
-    @user = User.find_by_username user[:username]
+    @user = resource
     @account = @user.account
     user.delete :account
     if @user.update_with_password(user) and @account.update_attributes(account)

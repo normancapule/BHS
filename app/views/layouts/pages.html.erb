@@ -8,10 +8,14 @@
 </head>
 <body>
   <%= render :template => 'layouts/_header' %>
-  <div class="application-body">
-    <div class="page-container">
-      <%= render :template => 'layouts/_sidebar' %>
-      <%= yield %>
+  <div class="container body">
+    <div class="row">
+        <div class="span2">
+        <%= render :template => 'layouts/_sidebar' %>
+      </div>
+      <div class="span8">
+        <%= yield %>
+      </div>
     </div>
   </div>
   <!-- Place all JS at the end of the document (for faster loading) -->

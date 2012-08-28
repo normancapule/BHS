@@ -6,53 +6,28 @@ h2 { border-bottom:2px solid #CCC; }
 .field_with_errors { color:red; display:inline}
 
 /********** DEFAULT BODY **********/
-div.application-body {
-  font-family: Helvetica,Arial,sans-serif;
-  width: 100%;
-  div.page-container {
-    padding-top: 50px;
-    width: 980px;
-    margin: 0 auto;
-    border: 2px solid #CCC;
-    div.page-body { float:left; padding:10px; margin-left:10px; width:770px; }
-  }
+div.container.body {
+  width: 1000px;
+  margin-top: 50px
 }
 
 /********** PAGE HEADER **********/
-div.master-page-header {
-  font-family: Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  div.navbar.main-bar {
-    background-color: #2C2C2C;
-    width: 1000px;
-    height: 50px;
-    border-radius: 5px / 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    margin: 0px auto;
-    div.links {
-      span { padding:15px 4px 0px 0px; }
-      span,a { float:right; color:white; }
-      a { text-decoration:underline; padding:15px 20px 0px 0px; font-weight:bold; }
-      a:hover { color:#008000; }
+div.navbar {
+  .navbar-inner {
+    .container {
+      width: 1020px;
     }
   }
 }
 
 /********** PAGE SIDEBAR **********/
-div.master-page-sidebar {
-  font-family: Helvetica,Arial,sans-serif;
-  float: left;
-  height: 100%;
-  margin: -8px 0px 0px 0px;
-  border-radius: 0px 0px 10px 10px;
-  background: rgba(0, 0, 0, 0.6);
-  div.sidebar.main-bar {
-    padding:10px;
+div.container {
+  div.master-page-sidebar {
+    border: 2px solid #CCC;
     ul.options { 
-      list-style:none; padding:0px; margin:0px;
+      list-style: none;
+      margin-bottom: 0px;
+      padding: 10px 0px 0px 8px;
       a { 
         background-image: url('Shiny_green_button_by_Ahimsa1.png'); 
         background-size: 150px 50px;

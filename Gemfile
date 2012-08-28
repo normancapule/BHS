@@ -38,7 +38,7 @@ group :test do
   gem 'launchy'
   gem "cucumber-rails"
   gem 'rspec-rails'
-  gem 'simplecov'
+  gem 'simplecov', :require => false
 end
 
 

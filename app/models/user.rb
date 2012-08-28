@@ -6,15 +6,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :role_id, :account_id
+  attr_accessor :login
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :account_id, :login
   # attr_accessible :title, :body
-  validates_presence_of :role_id, :username
+  validates_presence_of :username
   validates_uniqueness_of :username
   
   belongs_to :account
   has_many :transactions
 
-  def self.different_roles
-    {"1"=>"admin", "2"=>"client", "3"=>"therapist"}
+  def self.find_for_authentication(conditions)
+    login = conditions.delete(:login)
+    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
   end
 end

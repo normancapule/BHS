@@ -40,13 +40,7 @@ describe User do
     user.should_not be_valid
   end
   
-  it "should require a role" do
-    user = @user
-    user.role_id = nil
-    user.should_not be_valid
-  end
-  
-  it "should require to have an account" do
+  it "should require an account" do
     user = @user
     user.account_id = nil
     user.should_not be_valid
