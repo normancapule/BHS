@@ -11,6 +11,10 @@ Bhs::Application.routes.draw do
   end
 
   resources :transactions
+  resources :reservations
+  resources :customers
+  resources :services
+  resources :therapists
 
   root :to => "pages#index"
 end

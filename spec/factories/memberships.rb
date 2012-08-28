@@ -3,5 +3,17 @@
 FactoryGirl.define do
   factory :membership do
     card_number 1
+    
+    factory :personalized do
+      member_type 1
+    end
+
+    factory :family do
+      member_type 2
+    end
+
+    factory :child do
+      member_type 3
+    end
   end
 end

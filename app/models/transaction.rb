@@ -7,7 +7,7 @@ class Transaction < ActiveRecord::Base
   has_many :transaction_details
   has_many :services, :through => :transaction_details
 
-  def self.types
+  def self.types#what is this?
     {}
   end
 end

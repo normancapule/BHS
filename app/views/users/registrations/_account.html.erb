@@ -6,6 +6,10 @@
   <%= a.text_field :lastname, :required=>true  %>
 </div>
 
+<div><%= a.label :role_id, :class=>"bold" %><br />
+  <%= a.select :role_id, options_for_select([['Admin', 1], ['Customer', 2], ['Therapist', 3]], :selected => resource.account.role_id) %>      
+</div> 
+
 <div><%= a.label :nickname %><br />
   <%= a.text_field :nickname %>
 </div>

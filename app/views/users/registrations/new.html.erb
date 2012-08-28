@@ -23,6 +23,10 @@
         <div><%= a.label :lastname, :class=>"bold" %><br />
           <%= a.text_field :lastname, :required=>true  %>
         </div>
+
+        <div><%= a.label :role_id, :class=>"bold" %><br />
+          <%= a.select :role_id, options_for_select([['Admin', 1], ['Customer', 2], ['Therapist', 3]]), :required=>true %>      
+        </div> 
       </div>
     <% end %>
     
@@ -31,20 +35,16 @@
         <%= f.text_field :username, :required=>true %>
       </div> 
       
-      <div><%= f.label :role_id, :class=>"bold" %><br />
-        <%= f.select :role_id, options_for_select([['Admin', 1], ['Customer', 2], ['Therapist', 3]]) %>      
-      </div> 
-       
       <div><%= f.label :email, :class=>"bold" %><br />
         <%= f.email_field :email, :required=>true  %>
       </div> 
 
-      <div><%= f.label :password, :required=>true, :class=>"bold" %><br />
-        <%= f.password_field :password %>
+      <div><%= f.label :password, :class=>"bold" %><br />
+        <%= f.password_field :password, :required=>true %>
       </div>
 
-      <div><%= f.label :password_confirmation, :required=>true, :class=>"bold" %><br />
-        <%= f.password_field :password_confirmation %>
+      <div><%= f.label :password_confirmation, :class=>"bold" %><br />
+        <%= f.password_field :password_confirmation, :required=>true %>
       </div>
 
       <div><%= f.submit "Sign up" %></div>

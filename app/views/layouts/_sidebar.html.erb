@@ -3,10 +3,10 @@
     <% if current_user %>
       <ul class="options unstyled">
         <li><%= link_to "Transactions", transactions_path %></li>
-        <li><%= link_to "Reservations", "#" %></li>
-        <li><%= link_to "Customers", "#" %></li>
-        <li><%= link_to "Therapists", "#" %></li>
-        <li><%= link_to "Services", "#" %></li>
+        <li><%= link_to "Reservations", reservations_path %></li>
+        <li><%= link_to "Customers", customers_path %></li>
+        <li><%= link_to "Therapists", therapists_path %></li>
+        <li><%= link_to "Services", services_path %></li>
       </ul>
     <% else %>
     <% end %>

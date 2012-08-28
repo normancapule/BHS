@@ -1,8 +1,8 @@
-class TransactionsController < ApplicationController
+class ServicesController < ApplicationController
   layout 'pages'
 
   def index
-    @transactions = Transaction.all
+
   end
 
   def create

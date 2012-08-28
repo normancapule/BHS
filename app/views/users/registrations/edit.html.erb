@@ -22,10 +22,6 @@
         <%= f.text_field :username, :required=>true %>
       </div> 
       
-      <div><%= f.label :role_id, :class=>"bold" %><br />
-        <%= f.select :role_id, options_for_select([['Admin', 1], ['Customer', 2], ['Therapist', 3]]) %>      
-      </div> 
-       
       <div><%= f.label :email, :class=>"bold" %><br />
         <%= f.email_field :email, :required=>true  %>
       </div> 

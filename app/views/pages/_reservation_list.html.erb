@@ -1,6 +1,23 @@
-<% if @reservations.size > 0 %>
-  <% @reservations.each do |r| %>
-    
-  <% end %>
-<% else %>
-<% end %>
+<span class="label">Reservations for the Day</span>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <th>Name</th>
+    <th>Number of People</th>
+    <th>Time</th>
+  </thead>
+  <tbody>
+    <% if @reservations.size > 0 %>
+      <% @reservations.each do |r| %>
+        <tr>
+          <td><%= r.name %></td>
+          <td><%= r.number_people %></td>
+          <td><%= r.formatted_time %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan=3>There are no reservations today.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
