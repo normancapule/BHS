@@ -1,0 +1,67 @@
+/********** GLOBALS **********/
+.hidden { display:none; }
+.container-clearer { clear:both; }
+h2 { border-bottom:2px solid #CCC; }
+.bold { font-weight:bold;  }
+.field_with_errors { color:red; display:inline}
+
+/********** DEFAULT BODY **********/
+div.container.body {
+  width: 1000px;
+  margin-top: 50px
+}
+
+/********** PAGE HEADER **********/
+div.navbar {
+  .navbar-inner {
+    .container {
+      width: 1020px;
+    }
+  }
+}
+
+/********** PAGE SIDEBAR **********/
+div.container {
+  div.master-page-sidebar {
+    border: 2px solid #CCC;
+    ul.options { 
+      list-style: none;
+      margin-bottom: 0px;
+      padding: 10px 0px 0px 8px;
+      a { 
+        background-image: url('Shiny_green_button_by_Ahimsa1.png'); 
+        background-size: 150px 50px;
+        background-repeat: no-repeat;
+        display: block;
+        text-align: center;
+        width: 150px;
+        height: 50px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding-top: 14px;
+      }
+    }
+  }
+}
+
+/********** USER SESSIONS **********/
+div.new-user, div.edit-user {
+  div.left, div.right { float:left; }
+  div.left {
+    padding-right: 40px;
+    border-right: 2px solid #CCC;
+  }
+  div.right {
+    padding-left: 40px;
+  }
+}
+
+div.sign-in {
+  #remember-me { padding-bottom:10px;  }
+  form { margin:0px; }
+}
+
+div.user-body {
+  padding: 0px 15px 15px 15px;
+}

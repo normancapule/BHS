@@ -15,6 +15,13 @@ Bhs::Application.routes.draw do
   resources :customers
   resources :services
   resources :therapists
+  resources :pages, :only => [:index, :show] do
+    collection do 
+      post 'add_reservation'
+      post 'update_reservation'
+      delete 'delete_reservation'
+    end
+  end
 
   root :to => "pages#index"
 end

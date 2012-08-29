@@ -9,4 +9,16 @@ class Reservation < ActiveRecord::Base
   def formatted_time
     datetime.strftime "%I:%M%p"
   end
+
+  def hour_12
+    datetime.strftime "%I"
+  end
+
+  def minute
+    datetime.strftime "%M"
+  end
+
+  def am_pm
+    datetime.strftime "%p"
+  end
 end

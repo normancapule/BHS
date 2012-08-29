@@ -3,7 +3,7 @@
 <head>
   <title>BHS-Binan Laguna</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= stylesheet_link_tag    "pages/" %>
+  <%= stylesheet_link_tag    params[:controller] %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -20,6 +20,7 @@
   </div>
   <!-- Place all JS at the end of the document (for faster loading) -->
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag params[:controller] %>
 </body>
 </html>
 <%= yield :pages_assets %>

@@ -1,46 +1,21 @@
-/********** GLOBALS **********/
-.hidden { display:none; }
-.container-clearer { clear:both; }
-h2 { border-bottom:2px solid #CCC; }
-.bold { font-weight:bold;  }
-.field_with_errors { color:red; display:inline}
-
-/********** DEFAULT BODY **********/
-div.container.body {
-  width: 1000px;
-  margin-top: 50px
-}
-
-/********** PAGE HEADER **********/
-div.navbar {
-  .navbar-inner {
-    .container {
-      width: 1020px;
+/********** HOME PAGE **********/
+#index-body {
+  #reservation-list {
+    #home-reservation_wrapper {
+      .row-fluid:first-child { display:none; }
+    
     }
   }
 }
 
-/********** PAGE SIDEBAR **********/
-div.container {
-  div.master-page-sidebar {
-    border: 2px solid #CCC;
-    ul.options { 
-      list-style: none;
-      margin-bottom: 0px;
-      padding: 10px 0px 0px 8px;
-      a { 
-        background-image: url('Shiny_green_button_by_Ahimsa1.png'); 
-        background-size: 150px 50px;
-        background-repeat: no-repeat;
-        display: block;
-        text-align: center;
-        width: 150px;
-        height: 50px;
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        padding-top: 14px;
+#add-reservation {
+  form.new_reservation {
+    #reservation-form {
+      td.labels { padding-right:10px; }
+      td.inputs {
+        select, #reservation_number_people { width:60px; }
       }
     }
   }
 }
+
