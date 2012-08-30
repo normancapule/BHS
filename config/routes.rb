@@ -17,7 +17,7 @@ Bhs::Application.routes.draw do
   resources :therapists
   resources :pages, :only => [:index, :show] do
     collection do 
-      post 'add_reservation'
+      post 'create_reservation'
       post 'edit_reservation'
       post 'update_reservation'
       delete 'delete_reservation'

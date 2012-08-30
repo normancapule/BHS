@@ -31,12 +31,16 @@ describe Users::RegistrationsController do
       response.code.should == "302"
       response.should redirect_to "/"
     end
-
-    it "should redirect to root if successfully created a user" do
+    
+    it "should notredirect to root if there is an error creating a user" do
       @user[:username] = ""
       post :create,
            :user => @user
       response.code.should == "200"
     end
+  end
+
+  describe "PUT 'update'" do
+    pending "add some examples to (or delete) #{__FILE__}"
   end
 end

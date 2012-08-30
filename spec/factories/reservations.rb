@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :reservation do
     number_people 1
-    datetime "2012-08-22 16:48:06"
+    datetime DateTime.current
     name "MyString"
   end
 end
