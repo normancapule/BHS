@@ -18,6 +18,7 @@ Bhs::Application.routes.draw do
   resources :pages, :only => [:index, :show] do
     collection do 
       post 'add_reservation'
+      post 'edit_reservation'
       post 'update_reservation'
       delete 'delete_reservation'
     end

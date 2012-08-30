@@ -3,11 +3,11 @@ class Reservation < ActiveRecord::Base
   validates_presence_of :name, :number_people, :datetime
   
   def self.for_today
-    where("datetime between ? and ?", DateTime.current.beginning_of_day, DateTime.current.end_of_day).sort_by {|x| x.datetime}.reverse
+    where("datetime between ? and ?", DateTime.current.beginning_of_day, DateTime.current.end_of_day).sort_by {|x| x.datetime}
   end
 
   def formatted_time
-    datetime.strftime "%I:%M%p"
+    datetime.strftime "%p %I:%M"
   end
 
   def hour_12
@@ -19,6 +19,6 @@ class Reservation < ActiveRecord::Base
   end
 
   def am_pm
-    datetime.strftime "%p"
+    datetime.strftime("%p").upcase
   end
 end

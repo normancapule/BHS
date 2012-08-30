@@ -1,48 +1,47 @@
-$(document).ready(function() {
+function errorMaker(message) {
+  return "<div class='alert alert-error reservation-errors'>"+
+           "<button type='button' class='close' data-dismiss='alert'>×</button>"+
+           message +
+         "</div>";
+}
+
+function initializeDataTable() {
   $("#home-reservation").dataTable({
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap",
-    "iDisplayLength": 10
+    "iDisplayLength": 10,
+    "aoColumns": [
+                   null,
+                   null,
+                   { "asSorting": ["desc"] },
+                   { "asSorting": [] },
+                 ]
   });
-  
-  $('.new_reservation #reservation_number_people').live("keyup", function(e){
-    this.value = this.value.replace(/[^0-9\.]/g,'');
-  });
+}
 
-  $(".new_reservation").submit(function(e) {
-    e.preventDefault();
-    var flag = true,
-        parent = $(this).parent();
-    if(parent.find("#reservation_name").val().length == 0) {
-      flag = false;
-    }
-    if(parent.find("#reservation_number_people").val().length == 0 || 
-       parent.find("#reservation_number_people").val() == 0) {
-      flag = false;
-    }
-    
-    if(flag) {
-      $.ajax({
-        type: 'post',
-        url: $(this).attr('action'),
-        data: $(this).serialize(),
-        datatype: 'json',
-        success: function() {
-        },
-        errors: function() {
-        },
-      });    
-    } else {
-      parent.prepend("<div class='alert alert-error reservation-errors'>"+
-                    "<button type='button' class='close' data-dismiss='alert'>×</button>"+
-                    "Please fill out all required data."+
-                    "</div>");
+function initializeEditDialog() {
+  $("#edit-reservation").dialog({
+    title: "Edit a Reservation",
+    autoOpen: true,
+    width: 'auto',
+    height: '300',
+    modal: true,
+    resizable: false,
+    buttons: {
+      "Edit": function() {
+        $(".edit_reservation").submit()
+      },
+      "Close": function() {
+        $(this).dialog("close");
+      }
     }
   });
-  
+}
+
+function initializeAddDialog() {
   $("#add-reservation").dialog({
     title: "Add a Reservation",
-    autoOpen: true,
+    autoOpen: false,
     width: 'auto',
     height: '300',
     modal: true,
@@ -56,18 +55,78 @@ $(document).ready(function() {
       }
     }
   });
+}
+
+$(document).ready(function() {
+  initializeDataTable();
+  initializeAddDialog();
+
+  $('.new_reservation #reservation_number_people').live("keyup", function(e){
+    this.value = this.value.replace(/[^0-9\.]/g,'');
+  });
+
+  $(".add-dialog").live("click", function() {
+    $("#add-reservation").dialog("open"); 
+  });
   
-  $("#edit-reservation").dialog({
-    autoOpen: false,
-    modal: true,
-    resizable: false,
-    buttons: {
-      "Edit": function() {
-        $(".edit_reservation").submit()
-      },
-      "Close": function() {
-        $(this).dialog("close");
+  $(".edit-btn").live("click", function() {
+    $(".load-indicator").fadeIn();
+    $.ajax({
+      type: 'post',
+      url: '/pages/edit_reservation/',
+      data: {"id": $(this).parent().attr("r_id")},
+      datatype: 'json',
+      success: function() {
+        $(".load-indicator").fadeOut();
       }
+    });
+  });
+  
+  $(".delete-btn").live("click", function(){
+    $(".load-indicator").fadeIn();
+    $.ajax({
+      type: 'delete',
+      url: '/pages/delete_reservation/',
+      data: {"id": $(this).parent().attr("r_id")},
+      datatype: 'json',
+      success: function() {
+        $(".load-indicator").fadeOut();
+      }
+    });
+  });
+
+  $(".edit_reservation, .new_reservation").live('submit', function(e) {
+    e.preventDefault();
+    var flag = true,
+        parent = $(this).parent();
+    if(parent.find("#reservation_name").val().length == 0) {
+      flag = false;
+    }
+    
+    if(parent.find("#reservation_number_people").val().length == 0 || 
+       parent.find("#reservation_number_people").val() == 0) {
+      flag = false;
+    }
+    
+    if(flag) {
+      $(".load-indicator").fadeIn();
+      $.ajax({
+        type: 'post',
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        datatype: 'json',
+        success: function() {
+          $("#add-reservation").dialog("close");
+          $("#edit-reservation").dialog("close");
+          $(".load-indicator").fadeOut();
+        },
+        errors: function() {
+          parent.prepend(errorMaker("Please fill out all required data."));
+          $(".load-indicator").fadeOut();
+        },
+      });    
+    } else {
+      parent.prepend(errorMaker("Please fill out all required data."));
     }
   });
 });

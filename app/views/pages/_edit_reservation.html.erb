@@ -1,0 +1,28 @@
+<% if flash[:error] %>
+  <div class="alert alert-error reservation-errors">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+<%= form_for reservation, :url => update_reservation_pages_path, :method => 'post' do |f| %>
+  <%= f.text_field :id, :class=>"hidden" %>
+  <table id="reservation-form">
+    <tr>
+      <td class="labels"><%= f.label :name %></td>
+      <td class="inputs"><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td class="labels"><%= f.label :number_of_people %></td>
+      <td class="inputs"><%= f.text_field :number_people, :value=>1 %></td>
+    </tr>
+    <tr>
+      <td class="labels"><%= f.label :time %></td>
+      <td class="inputs">
+        <%= select_tag :hour, options_for_select((1..12).map{|x| "%02d" % x}, :selected => reservation.hour_12) %>
+        <%= select_tag :minutes, options_for_select((0..60).map{|x| "%02d" % x}, :selected => reservation.minute) %>
+        <%= select_tag :am_pm, options_for_select(["AM", "PM"], :selected => reservation.am_pm) %>
+      </td>
+    </tr>
+  </table>
+<% end %>

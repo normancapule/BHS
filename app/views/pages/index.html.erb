@@ -2,16 +2,15 @@
   <div id="index-body" class="page-body">
     <h2> Home Page </h2>
     <div id="reservation-list">
-      <%= render :partial => "reservation_list" %>
+      <%= render :partial => "reservation_list", :locals => {:reservations => @reservations} %>
     </div>
   </div>
 
   <div id="add-reservation" class="reservation-dialog">
-    <%= render :partial => "add_reservation" %>
+    <%= render :partial => "add_reservation", :locals => {:reservation => @reservation} %>
   </div>
 
   <div id="edit-reservation" class="reservation-dialog">
-    <%= render :partial => "edit_reservation" %>
   </div>
 <% else %>
   

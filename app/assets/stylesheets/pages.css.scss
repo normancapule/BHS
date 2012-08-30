@@ -8,12 +8,12 @@
   }
 }
 
-#add-reservation {
-  form.new_reservation {
+.reservation-dialog {
+  form {
     #reservation-form {
       td.labels { padding-right:10px; }
       td.inputs {
-        select, #reservation_number_people { width:60px; }
+        select, #reservation_number_people { width:60px;}
       }
     }
   }
