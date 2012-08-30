@@ -6,7 +6,7 @@
     </div>
   <% end %>
   <span class="label">Reservations for the Day</span><a class="btn btn-small add-dialog"><i class="icon-plus"></i></a>
-  <table id="home-reservation" class="table table-striped table-bordered table-hover">
+  <table id="home-reservation" class="table table-striped table-bordered table-hover" data-source="<%= pages_url(format: 'json') %>">
     <thead>
       <th>Name</th>
       <th>Number of People</th>
@@ -14,19 +14,6 @@
       <th></th>
     </thead>
     <tbody>
-      <% reservations.each do |r| %>
-        <tr>
-          <td><%= r.name %></td>
-          <td><%= r.number_people %></td>
-          <td><%= r.formatted_time %></td>
-          <td class="center" r_id="<%= r.id %>" name="<%= r.name %>" number-people="<%= r.number_people %>" 
-                             hour="<%= r.hour_12 %>" minute="<%= r.minute %>" am-pm="<%= r.am_pm %>">
-            <a class="btn btn-small edit-btn"><i class="icon-pencil"></i></a>
-            <a class="btn btn-small delete-btn" data-confirm="Are you sure you want to delete this reservation?">
-               <i class="icon-trash"></i></a>
-          </td>
-        </tr>
-      <% end %>
     </tbody>
   </table>
 <% else %>

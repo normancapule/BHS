@@ -4,6 +4,10 @@ class PagesController < ApplicationController
   def index
     @reservation = Reservation.new :datetime => DateTime.current
     get_reservations
+    respond_to do |format|
+      format.html
+      format.json { render json: PagesDatatable.new(view_context)}
+    end
   end
 
   def show
@@ -15,7 +19,9 @@ class PagesController < ApplicationController
     @reservation = Reservation.new params[:reservation]
     params[:am_pm] == "AM" ? true : params[:hour] = params[:hour].to_i + 12
     @reservation.datetime = DateTime.current.change :hour => params[:hour].to_i, :min => params[:minutes].to_i, :sec => 0
-    @reservation.save
+    if @reservation.save
+      flash[:notification] = "Reservation has been created successfully";
+    end
     get_reservations
     respond_to do |format|
       format.js {render :layout => false}
@@ -33,7 +39,9 @@ class PagesController < ApplicationController
     update_reservation = Reservation.find params[:reservation][:id]
     params[:am_pm] == "AM" ? true : params[:hour] = params[:hour].to_i + 12
     update_reservation.datetime = DateTime.current.change :hour => params[:hour].to_i, :min => params[:minutes].to_i, :sec => 0
-    update_reservation.update_attributes params[:reservation]
+    if update_reservation.update_attributes params[:reservation]
+      flash[:notification] = "Reservation has been successfully updated";
+    end
     get_reservations
     respond_to do |format|
       format.js {render :layout => false}
@@ -41,7 +49,9 @@ class PagesController < ApplicationController
   end
 
   def delete_reservation
-    Reservation.delete params[:id]
+    if Reservation.delete params[:id]
+      flash[:notification] = "Reservation has been successfully deleted";
+    end
     get_reservations
     respond_to do |format|
       format.js {render :layout => false}

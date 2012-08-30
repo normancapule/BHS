@@ -10,6 +10,9 @@ function initializeDataTable() {
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap",
     "iDisplayLength": 10,
+    "bProcessing": true,
+    "bServerSide": true,
+    "sAjaxSource": $("#home-reservation").data("source"),
     "aoColumns": [
                    null,
                    null,
@@ -74,7 +77,7 @@ $(document).ready(function() {
     $.ajax({
       type: 'post',
       url: '/pages/edit_reservation/',
-      data: {"id": $(this).parent().attr("r_id")},
+      data: {"id": $(this).attr("r_id")},
       datatype: 'json',
       success: function() {
         $(".load-indicator").fadeOut();
@@ -87,7 +90,7 @@ $(document).ready(function() {
     $.ajax({
       type: 'delete',
       url: '/pages/delete_reservation/',
-      data: {"id": $(this).parent().attr("r_id")},
+      data: {"id": $(this).attr("r_id")},
       datatype: 'json',
       success: function() {
         $(".load-indicator").fadeOut();
