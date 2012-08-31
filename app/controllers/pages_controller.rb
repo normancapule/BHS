@@ -3,10 +3,10 @@ class PagesController < ApplicationController
   
   def index
     @reservation = Reservation.new :datetime => DateTime.current
-    get_reservations
+    get_reservations_count
     respond_to do |format|
-      format.html
       format.json { render json: PagesDatatable.new(view_context)}
+      format.html
     end
   end
 
@@ -22,7 +22,7 @@ class PagesController < ApplicationController
     if @reservation.save
       flash[:notification] = "Reservation has been created successfully";
     end
-    get_reservations
+    get_reservations_count
     respond_to do |format|
       format.js {render :layout => false}
     end
@@ -42,7 +42,7 @@ class PagesController < ApplicationController
     if update_reservation.update_attributes params[:reservation]
       flash[:notification] = "Reservation has been successfully updated";
     end
-    get_reservations
+    get_reservations_count
     respond_to do |format|
       format.js {render :layout => false}
     end
@@ -52,14 +52,14 @@ class PagesController < ApplicationController
     if Reservation.delete params[:id]
       flash[:notification] = "Reservation has been successfully deleted";
     end
-    get_reservations
+    get_reservations_count
     respond_to do |format|
       format.js {render :layout => false}
     end
   end
 
   private
-  def get_reservations
-    @reservations = Reservation.for_today
+  def get_reservations_count
+    @reservations = Reservation.for_today.count
   end
 end

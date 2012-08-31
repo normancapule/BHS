@@ -6,9 +6,10 @@ FactoryGirl.define do
     notes "MyText"
     paid false
     transaction_type 1
+    transac_date Date.current
     after(:build) do |transaction|
-      transaction.therapist = FactoryGirl.build :therapist
-      transaction.customer = FactoryGirl.build :clientnonmember
+      transaction.therapist = FactoryGirl.build(:therapist).account
+      transaction.customer = FactoryGirl.build(:clientnonmember).account
     end
   end
 end

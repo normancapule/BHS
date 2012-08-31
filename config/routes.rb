@@ -10,7 +10,11 @@ Bhs::Application.routes.draw do
     match 'logout' => 'users/sessions#destroy'
   end
 
-  resources :transactions
+  resources :transactions do
+    collection do
+      post 'refresh_main_table'
+    end
+  end
   resources :reservations
   resources :customers
   resources :services

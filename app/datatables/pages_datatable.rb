@@ -18,14 +18,15 @@ private
 
   def data
    reservations.map do |r|
-     [
-       h(r.name),
-       h(r.number_people),
-       h(r.formatted_time),
-       "<a class='btn btn-small edit-btn' r_id='#{r.id}'><i class='icon-pencil'></i></a>"+
-       "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this reservation?' r_id='#{r.id}'>"+
-       "<i class='icon-trash'></i></a>"
-     ]
+     {
+       "DT_RowClass" => "group",
+       "0" => h(r.name),
+       "1" => h(r.number_people),
+       "2" => h(r.formatted_time),
+       "3" => "<a class='btn btn-small edit-btn' r_id='#{r.id}'><i class='icon-pencil'></i></a>"+
+              "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this reservation?' r_id='#{r.id}'>"+
+              "<i class='icon-trash'></i></a>"
+     }
    end 
   end  
 

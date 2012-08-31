@@ -1,7 +1,14 @@
 <div class="transactions-content">
   <h2>Transactions</h2>
 
-  <table class="transactions-table">
-    
+  <div id="transactions-list">
+    <%= render :partial => "transaction_list", :locals => {:transactions => @transactions, :date => @date} %>
   </table>
+</div>
+
+<div id="add-transaction" class="transaction-dialog" style="display:none">
+  <%= render :partial => "add_transaction", :locals => {:transaction => @transaction} %>
+</div>
+
+<div id="edit-transaction" class="transaction-dialog" style="display:none">
 </div>

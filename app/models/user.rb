@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   
   belongs_to :account
-  has_many :transactions
 
   def self.find_for_authentication(conditions)
     login = conditions.delete(:login)

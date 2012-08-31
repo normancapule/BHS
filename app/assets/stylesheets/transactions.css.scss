@@ -1,0 +1,8 @@
+div.transactions-content {
+  #transactions-list {
+    .ui-datepicker-trigger { cursor: pointer; }
+    #transaction-table {
+      tbody tr td:last-child { text-align:center; width:100px;}
+    }
+  }
+}

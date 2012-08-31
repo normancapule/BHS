@@ -13,12 +13,13 @@ function initializeDataTable() {
     "bProcessing": true,
     "bServerSide": true,
     "sAjaxSource": $("#home-reservation").data("source"),
+    "aaSorting": [[ 2, "desc" ]],
     "aoColumns": [
                    null,
                    null,
                    { "asSorting": ["desc"] },
                    { "asSorting": [] },
-                 ]
+                 ],
   });
 }
 
