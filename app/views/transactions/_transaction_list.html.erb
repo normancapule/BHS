@@ -11,7 +11,7 @@
     <%= text_field_tag :date, "", :class => "date-selector hidden" %>
     <a class="btn btn-small add-dialog"><i class="icon-plus"></i></a>
   </div>
-  <table id="transaction-table" class="table table-striped table-bordered table-hover" data-source="<%= transactions_url(format: 'json') %>">
+  <table id="transaction-table" class="table table-striped table-bordered table-hover" data-source="<%= transactions_url(format: 'json', date: date[:to_parse]) %>">
     <thead>
       <th>Customer</th>
       <th>Therapist</th>

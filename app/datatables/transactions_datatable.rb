@@ -3,6 +3,7 @@ class TransactionsDatatable < PagesController
 
   def initialize(view, date)
     @view = view
+    puts date.inspect
     @date = Date.parse(date[:to_parse])
   end
 

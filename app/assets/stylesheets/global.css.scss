@@ -6,31 +6,39 @@ h2 { border-bottom:2px solid #CCC; }
 .field_with_errors { color:red; display:inline}
 
 /********** LOADING INDICATOR **********/
- .load-indicator {
-   display: none;
-   position: absolute;
-   background-color: #363636;
-   border: 2px solid black;
-   top: 35%;
-   left: 35%;
-   width: 30%;
-   padding: 2em;
-   z-index: 4000;
-   background-position: 50% 60%;
-   background-repeat: no-repeat;
-   background-image: url(loading.gif);
-   background-size: 80%;
-   text-align: center;
-   opacity: 0.8;
-     span {
-       color: white;
-       font-size: 30px;
-       font-weight: bold;
-       position: relative;
-       bottom: 20px;
-     }
- }
- 
+.load-indicator, .dataTables_processing {
+  background-position: 50% 60%;
+  background-repeat: no-repeat;
+  background-image: url(loading.gif);
+  background-size: 80%;
+  border-radius: 10px / 10px;
+}
+
+.load-indicator {
+  display: none;
+  position: absolute;
+  background-color: #363636;
+  border: 2px solid black;
+  top: 35%;
+  left: 35%;
+  width: 30%;
+  padding: 2em;
+  z-index: 4000;
+  text-align: center;
+  opacity: 0.8;
+  span {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    bottom: 20px;
+  }
+}
+
+.dataTables_processing {
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
 
 /********** DEFAULT BODY **********/
 div.container.body {
