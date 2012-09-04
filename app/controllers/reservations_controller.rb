@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   layout 'pages'
-
+  before_filter :authenticate_user!
+  
   def index
 
   end

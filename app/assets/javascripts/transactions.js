@@ -57,15 +57,21 @@ function initializeCustomerDataTable() {
 function initializeButtons() {
   $(".add-customer-btn").live("click", function() {
     var me = $(this),
-        id = me.attr("c_id"),
-        name = me.attr("c_name");
+        id = me.attr("c_id");
+    $(".load-indicator").fadeIn();
+    $.ajax({
+      type: 'post',
+      url: '/transactions/select_customer',
+      data: {"id": id},
+      success: function() {
+        $(".load-indicator").fadeOut();
+      }
+    });
+  });
 
-    if($("#customer-pool").find("div."+id).size()==0) {
-      $("#customer-pool").append("<div class='alert alert-info "+id+"'>"+
-                                   "<button type='button' class='close' data-dismiss='alert'>×</button>"+
-                                   name+
-                                 "</div>");
-    }
+  $(".transition").live("click", function() {
+    var me = $(this);
+    me.parent().parent().modal('hide');
   });
 }
 

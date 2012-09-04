@@ -45,10 +45,18 @@ class TransactionsController < ApplicationController
     end
   end
   
+  def select_customer
+    @customer = Account.find(params[:id])
+    respond_to do |format|
+      format.js {render :layout => false}
+    end
+  end
+
   private
   def get_transaction_requirements
     @transactions = Transaction.of_date(Date.parse(@date[:to_parse]))
-    @customers = Account.get_customers
     @transaction = Transaction.new
+    @customers = Account.get_customers
+    @services = Service.order
   end
 end

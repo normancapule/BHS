@@ -13,6 +13,7 @@ Bhs::Application.routes.draw do
   resources :transactions do
     collection do
       post 'refresh_main_table'
+      post 'select_customer'
       get 'main_table_data'
       get 'customer_table_data'
     end

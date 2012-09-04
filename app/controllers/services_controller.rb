@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
   layout 'pages'
+  before_filter :authenticate_user!
 
   def index
 
