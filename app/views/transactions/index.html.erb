@@ -6,9 +6,7 @@
   </table>
 </div>
 
-<div id="add-transaction" class="transaction-dialog" style="display:none">
-  <%= render :partial => "add_transaction", :locals => {:transaction => @transaction} %>
-</div>
+<%= render :partial => "add_transaction", :locals => {:transaction => @transaction, :customers => @customers} %>
 
 <div id="edit-transaction" class="transaction-dialog" style="display:none">
 </div>

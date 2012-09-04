@@ -5,13 +5,13 @@
   </div>
 <% end %>
 
-<% if transactions > 0 %>
+<% if transactions.count > 0 %>
   <div class="table-headers">
     <span class="label">Transactions for <%= date[:format] %></span>
     <%= text_field_tag :date, "", :class => "date-selector hidden" %>
-    <a class="btn btn-small add-dialog"><i class="icon-plus"></i></a>
+    <a href="#step1" role="button" class="btn btn-small add-dialog" data-toggle="modal"><i class="icon-plus"></i></a>
   </div>
-  <table id="transaction-table" class="table table-striped table-bordered table-hover" data-source="<%= transactions_url(format: 'json', date: date[:to_parse]) %>">
+  <table id="transaction-table" class="table table-striped table-bordered table-hover" data-source="<%= main_table_data_transactions_url(format: 'json', date: date[:to_parse]) %>">
     <thead>
       <th>Customer</th>
       <th>Therapist</th>
@@ -25,5 +25,5 @@
 <% else %>
   <span class="label label-important">There are no transactions for <%= date[:format] %>.</span>
   <%= text_field_tag :date, date, :class => "date-selector hidden" %>
-  <a class="btn btn-small add-dialog"><i class="icon-plus"></i></a>
+  <a href="#step1" role="button" class="btn btn-small add-dialog" data-toggle="modal"><i class="icon-plus"></i></a>
 <% end %>

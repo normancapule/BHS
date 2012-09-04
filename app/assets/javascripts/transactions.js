@@ -1,6 +1,6 @@
 function initializeMainDataTable() {
   $("#transaction-table").dataTable({
-    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<p>>",
     "sPaginationType": "bootstrap",
     "iDisplayLength": 10,
     "bProcessing": true,
@@ -11,7 +11,7 @@ function initializeMainDataTable() {
                    null,
                    null,
                    null,
-                   { "asSorting": [] },
+                   { "asSorting": [] }
                  ],
   });
   
@@ -37,6 +37,40 @@ function initializeMainDataTable() {
   });
 }
 
+function initializeCustomerDataTable() {
+  $("#customer-table").dataTable({
+    "sDom": "<'row-fluid'<f>r>t<'row-fluid'<p>>",
+    "sPaginationType": "bootstrap",
+    "iDisplayLength": 10,
+    "bProcessing": true,
+    "bServerSide": true,
+    "sAjaxSource": $("#customer-table").data("source"),
+    "aaSorting": [[ 0, "desc" ]],
+    "aoColumns": [
+                   { "asSorting": [], "sWidth": '1%' },
+                   { "sWidth": '8%' },
+                   { "sWidth": '8%' }
+                 ],
+  });
+}
+
+function initializeButtons() {
+  $(".add-customer-btn").live("click", function() {
+    var me = $(this),
+        id = me.attr("c_id"),
+        name = me.attr("c_name");
+
+    if($("#customer-pool").find("div."+id).size()==0) {
+      $("#customer-pool").append("<div class='alert alert-info "+id+"'>"+
+                                   "<button type='button' class='close' data-dismiss='alert'>×</button>"+
+                                   name+
+                                 "</div>");
+    }
+  });
+}
+
 $(document).ready(function() {
   initializeMainDataTable();
+  initializeCustomerDataTable();
+  initializeButtons();
 });

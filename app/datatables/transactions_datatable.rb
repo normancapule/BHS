@@ -1,16 +1,15 @@
-class TransactionsDatatable < PagesController
+class TransactionsDatatable
   delegate :params, :h, :link_to, to: :@view
 
   def initialize(view, date)
     @view = view
-    puts date.inspect
-    @date = Date.parse(date[:to_parse])
+    @date = Date.parse(date)
   end
 
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: Transaction.of_date(@date).count,
+      iTotalRecords: transactions.count,
       iTotalDisplayRecords: transactions.total_entries,
       aaData: data
     }

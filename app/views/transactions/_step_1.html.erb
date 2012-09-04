@@ -1,0 +1,23 @@
+<div class="modal-body">
+  <div id="step-headers">
+    <span class="step1 btn">Step 1: Select the Customers</span>
+    <span class="divider"></span>
+    <span class="step2 btn btn-inverse">Step 2: Select Therapist and Services</span>
+  </div>
+  <div id="customer-pool" class="span3">
+    <h5>Selected Customers</h5>
+    <div class="alert alert-info">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      Testing
+    </div>
+  </div>
+  <div id="customer-list" class="span5">
+    <%= render :partial => "customer_list", :locals => {:customers => customers} %>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <a href="#" class="btn btn-primary next_step1">Next</a>
+  <a href="#" class="btn cancel" data-dismiss="modal" aria-hidden="true">Cancel</a>
+</div>
+

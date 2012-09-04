@@ -5,4 +5,23 @@ div.transactions-content {
       tbody tr td:last-child { text-align:center; width:100px;}
     }
   }
+
+  #step1 {
+    width: 900px;
+    margin-left: -450px;
+    .alert { margin-bottom:5px; }
+    #step-headers { 
+      border-bottom: 2px solid #CCC; 
+      margin-bottom: 10px; 
+      .divider { border-right:2px solid #CCC; margin-right:10px; margin-left:8px; }
+    }
+    #customer-list {
+      border-left: 2px solid #CCC;
+      padding-left: 30px;
+      .dataTables_filter { float:left; }
+      #customer-table {
+        tbody tr td:first-child { text-align:center; }
+      }
+    }
+  }
 }

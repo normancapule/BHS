@@ -8,9 +8,17 @@ class Account < ActiveRecord::Base
   has_many :therapist_transactions, :class_name => "Transaction", :foreign_key => "therapist_id"
   
   def self.roles
-    {"1"=>"admin", "2"=>"client", "3"=>"therapist"}
+    {"1"=>"admin", "2"=>"customer", "3"=>"therapist"}
   end
 
+  def self.get_customers
+    where("role_id = ?", 2)
+  end
+  
+  def self.get_therapists
+    where("role_id = ?", 3)
+  end
+  
   def transactions
     case role_id
       when 1

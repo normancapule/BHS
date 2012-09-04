@@ -8,7 +8,7 @@ class PagesDatatable < PagesController
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: Reservation.for_today.count,
+      iTotalRecords: reservations.count,
       iTotalDisplayRecords: reservations.total_entries,
       aaData: data
     }

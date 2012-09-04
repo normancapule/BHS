@@ -7,7 +7,7 @@ function errorMaker(message) {
 
 function initializeDataTable() {
   $("#home-reservation").dataTable({
-    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<p>>",
     "sPaginationType": "bootstrap",
     "iDisplayLength": 10,
     "bProcessing": true,
@@ -61,10 +61,7 @@ function initializeAddDialog() {
   });
 }
 
-$(document).ready(function() {
-  initializeDataTable();
-  initializeAddDialog();
-
+function initializeButtons() {
   $('.new_reservation #reservation_number_people').live("keyup", function(e){
     this.value = this.value.replace(/[^0-9\.]/g,'');
   });
@@ -133,4 +130,10 @@ $(document).ready(function() {
       parent.prepend(errorMaker("Please fill out all required data."));
     }
   });
+}
+
+$(document).ready(function() {
+  initializeDataTable();
+  initializeAddDialog();
+  initializeButtons();
 });
