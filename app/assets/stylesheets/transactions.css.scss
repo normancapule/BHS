@@ -15,6 +15,7 @@ div.transactions-content {
       .divider { border-right:2px solid #CCC; margin-right:10px; margin-left:8px; }
     }
   }
+
   #step1 {
     .alert { margin-bottom:5px; }
     .customer-pool table {
@@ -29,6 +30,10 @@ div.transactions-content {
       #customer-table {
         tbody tr td:first-child { text-align:center; }
       }
+    }
+    .therapist-select {
+      margin-left: 30px;
+      table tr td:first-child { font-weight:bold; padding:5px 5px 20px 0px; }
     }
   }
 }

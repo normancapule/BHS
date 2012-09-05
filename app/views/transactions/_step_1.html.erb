@@ -1,13 +1,19 @@
 <div class="modal-body">
   <div id="step-headers">
-    <span class="step1 btn btn-inverse">Step 1: Select the Customer</span>
+    <span class="step1 btn btn-inverse">Step 1: Select the Customer and Therapist</span>
     <span class="divider"></span>
-    <span class="step2 btn disabled">Step 2: Select the Therapist</span>
-    <span class="divider"></span>
-    <span class="step3 btn disabled">Step 3: Select the Services</span>
+    <span class="step2 btn disabled">Step 2: Select the Services</span>
+  </div>
+  <div class="therapist-select">
+    <table>
+      <tr>
+        <td>Therapist: </td>
+        <td><%= select_tag :therapists, options_for_select(@therapists.map {|z,i| [z.name, i]}, 0), :class=>'therapists'%></td>
+      </tr>
+    </table>
   </div>
   <div class="span3 customer-pool">
-    <h5>Selected Customer</h5>
+    <h5>Customer</h5>
   </div>
   <div class="span5 customer-list">
     <%= render :partial => "customer_list", :locals => {:customers => customers} %>

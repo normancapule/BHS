@@ -4,7 +4,7 @@ class Membership < ActiveRecord::Base
   
   belongs_to :account
 
-  def self.member_types
+  def self.types
     {"1"=>"personalized", "2"=>"Family", "3"=>"Child"}
   end
 end
