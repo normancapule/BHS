@@ -55,6 +55,7 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.of_date(Date.parse(@date[:to_parse]))
     @transaction = Transaction.new
     @customers = Account.get_customers
+    @customer = Account.new_customer
     @therapists = Account.get_therapists
     @services = Service.order
   end

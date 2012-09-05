@@ -13,3 +13,11 @@
   </div>
   <%= render :partial => "step_2", :locals => {:services => services} %>
 </div>
+
+<div class="modal hide fade" id="step3" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Create a New Transaction</h3>
+  </div>
+  <%= render :partial => "step_3", :locals => {:therapists => therapists} %>
+</div>
