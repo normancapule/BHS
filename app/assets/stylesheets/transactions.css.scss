@@ -17,7 +17,6 @@ div.transactions-content {
   }
 
   #step1 {
-    .alert { margin-bottom:5px; }
     .customer-pool table {
       border: 2px solid #CCC;
       tbody tr td:first-child { font-weight:bold; padding:5px 0px 5px 5px }
@@ -32,9 +31,36 @@ div.transactions-content {
       }
     }
   }
+  
+  #step2 {
+    .service-columns {
+      .service-list {
+        border-left: 2px solid #CCC;
+        padding-left: 30px;
+        .dataTables_filter { float:left; }
+        #service-table {
+          tbody tr td:first-child { text-align:center; }
+        }
+        select.am-pm-selector { width:15%; }
+        div.dataTables_filter input { width:70%; }
+        .footer {
+          padding-top: 10px;
+          float: right;
+          #total-cost-label {
+            font-weight: bold;
+            position: relative;
+            bottom: 5px;
+          }
+          #total-cost {
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
 
   #step3 {
-    .therapist-select {
+    .additional-info {
       margin-left: 30px;
       table tr td:first-child { font-weight:bold; padding:5px 5px 20px 0px; }
     }

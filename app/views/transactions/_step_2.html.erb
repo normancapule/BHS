@@ -4,7 +4,14 @@
     <span class="divider"></span>
     <span class="step2 btn btn-inverse">Step 2: Select the Services</span>
     <span class="divider"></span>
-    <span class="step3 btn disabled">Step 3: Select the Therapist</span>
+    <span class="step3 btn disabled">Step 3: Additional Info</span>
+  </div>
+  <div class="service-columns">
+    <% if transaction.customer %>
+      <%= render :partial => "service_columns", :locals => {:customer => transaction.customer, :transaction => transaction} %>
+    <% else %>
+      <h5>Please select a customer first.</h5>
+    <% end %>
   </div>
 </div>
 

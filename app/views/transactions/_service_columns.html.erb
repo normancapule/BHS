@@ -1,0 +1,27 @@
+<div class="span3 service-pool">
+  <h5>Services</h5>
+  <% transaction.services.each do |s| %>
+    <div class='alert alert-info alert-block <%= s.id %> selected-service' cost=<%= s.get_price(transaction.get_type, customer) %>> 
+     <button type='button' class='close' data-dismiss='alert'>×</button>
+     <%= s.name %>
+   </div>
+  <% end %> 
+</div>
+<div class="span5 service-list">
+  <label>Time of the Day: 
+    <%= select_tag "am-pm-selector", options_for_select(["AM", "PM"], :selected => transaction.get_type ), :class => "am-pm-selector" %>
+  </label>
+  <table id="service-table" class="table table-striped table-bordered table-hover" data-source="<%= service_table_data_transactions_url(format: 'json', id: customer.id, am_pm: params[:am_pm]) %>">
+    <thead>
+      <th></th>
+      <th>Service Name</th>
+      <th>Total Price</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <div class="footer">
+    <label id="total-cost-label">Total: Php</label>
+    <input type="text" id="total-cost" value=<%= transaction.total_price %>>
+  </div>
+</div>

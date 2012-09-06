@@ -5,6 +5,17 @@ class Membership < ActiveRecord::Base
   belongs_to :account
 
   def self.types
-    {"1"=>"personalized", "2"=>"Family", "3"=>"Child"}
+    {"1"=>"Personalized", "2"=>"Family", "3"=>"Child"}
+  end
+
+  def membership_type
+    case member_type
+      when 1
+        "Personalized"
+      when 2
+        "Family"
+      when 3
+        "Child"
+    end
   end
 end

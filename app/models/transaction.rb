@@ -15,9 +15,16 @@ class Transaction < ActiveRecord::Base
         order("#{sort_column} #{sort_direction}")
     end
   }
-  
-  def self.types#what is this?
-    {}
+
+  def get_type
+    case transaction_type
+      when 1 then "AM"
+      when 2 then "PM"
+    end
+  end  
+
+  def self.types
+    {"1" => "AM", "2" => "PM"}
   end
 
   def self.of_date(date)

@@ -4,10 +4,14 @@
     <span class="divider"></span>
     <span class="step2 btn disabled">Step 2: Select the Services</span>
     <span class="divider"></span>
-    <span class="step3 btn disabled">Step 3: Select the Therapist</span>
+    <span class="step3 btn disabled">Step 3: Additional Info</span>
   </div>
   <div class="span3 customer-pool">
-    <%= render :partial => "customer_info", :locals => {:customer => @customer} %>
+    <% if transaction.customer %>
+      <%= render :partial => "customer_info", :locals => {:customer => transaction.customer} %>
+    <% else %>
+      <h5>Customer</h5>
+    <% end %>
   </div>
   <div class="span5 customer-list">
     <%= render :partial => "customer_list", :locals => {:customers => customers} %>
@@ -18,4 +22,3 @@
   <a href="#step2" class="btn btn-primary transition" data-toggle="modal">Next</a>
   <a href="#" class="btn cancel" data-dismiss="modal" aria-hidden="true">Cancel</a>
 </div>
-

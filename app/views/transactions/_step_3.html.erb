@@ -4,14 +4,22 @@
     <span class="divider"></span>
     <span class="step2 btn disabled">Step 2: Select the Services</span>
     <span class="divider"></span>
-    <span class="step3 btn btn-inverse">Step 3: Select the Therapist</span>
+    <span class="step3 btn btn-inverse">Step 3: Additional Info</span>
   </div>
   
-  <div class="therapist-select">
+  <div class="additional-info">
     <table>
       <tr>
         <td>Therapist: </td>
-        <td><%= select_tag :therapists, options_for_select(therapists.map {|z,i| [z.name, i]}, 0), :class=>'therapists'%></td>
+        <td><%= select_tag :therapists, options_for_select(therapists.map {|z| z.name}, :selected => transaction.therapist ? transaction.therapist.name : 0), :class=>'therapists'%></td>
+      </tr>
+      <tr>
+        <td>Transaction Date: </td>
+        <td><%= text_field_tag :date, transaction.transac_date ? transaction.transac_date : Date.current.strftime("%m-%d-%Y"), :class => "transaction-date-selector" %></td>
+      </tr>
+      <tr>
+        <td>Notes</td>
+        <td><%= text_area_tag :notes, "", :size => "10x5"%></td>
       </tr>
     </table>
   </div>

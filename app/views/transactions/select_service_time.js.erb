@@ -1,3 +1,2 @@
-$(".customer-pool").html("<%= escape_javascript(render :partial => "customer_info", :locals => {:customer => @customer})%>");
 $(".service-columns").html("<%= escape_javascript(render :partial => "service_columns", :locals => {:customer => @customer, :transaction => @transaction})%>");
 initializeServiceDataTable();

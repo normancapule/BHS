@@ -34,6 +34,10 @@ class Account < ActiveRecord::Base
     new :role_id => 3
   end 
 
+  def member?
+    membership ? true : false
+  end
+
   def transactions
     case role_id
       when 1

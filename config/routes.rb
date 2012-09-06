@@ -14,8 +14,11 @@ Bhs::Application.routes.draw do
     collection do
       post 'refresh_main_table'
       post 'select_customer'
+      post 'select_service_time'
+      post 'initialize_transaction_modal'
       get 'main_table_data'
       get 'customer_table_data'
+      get 'service_table_data'
     end
   end
   resources :reservations
