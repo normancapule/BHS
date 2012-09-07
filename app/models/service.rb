@@ -1,10 +1,17 @@
 class Service < ActiveRecord::Base
-  attr_accessible :member_price_eve, :member_price_morn, :name, :regular_price, :service_type
-  validates_presence_of :member_price_eve, :member_price_morn, :name, :regular_price, :service_type
+  attr_accessible :member_price_eve, :member_price_morn, :name, :regular_price, :service_type_id
+  validates_presence_of :member_price_eve, :member_price_morn, :name, :regular_price, :service_type_id
   validates_uniqueness_of :name
 
   def self.types
     {"1"=>"Member and Non-Member", "2"=> "Members Only"}
+  end
+
+  def service_type
+    case service_type_id
+      when 1 then "Member and Non-Member"
+      when 2 then "Members Only"
+    end
   end
 
   def self.get_services(customer)
@@ -12,18 +19,18 @@ class Service < ActiveRecord::Base
   end
   
   def self.get_services_for_all
-    where "service_type = 1"
+    where "service_type_id = 1"
   end
 
   def self.get_services_for_members
-    where "service_type = 1 OR service_type = 2"
+    where "service_type_id = 1 OR service_type_id = 2"
   end
 
   def get_price(am_pm, customer)
-    case am_pm.downcase
-      when "am"
+    case am_pm.to_i
+      when 1
         customer.member? ? member_price_morn : regular_price
-      when "pm"
+      when 2
         customer.member? ? member_price_eve : regular_price
     end
   end

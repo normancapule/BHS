@@ -1,3 +1,5 @@
-$("#transaction-modal").html("<%= escape_javascript(render :partial => "transaction", :locals => {:transaction => @transaction, :customers => @customers, :services => @services, :therapists => @therapists})%>");
+$("#step1").html("<%= escape_javascript(render :partial => "step_1", :locals => {:customers => @customers, :transaction => @transaction})%>");
+$("#step2").html("<%= escape_javascript(render :partial => "step_2", :locals => {:services => @services, :transaction => @transaction})%>");
+$("#step3").html("<%= escape_javascript(render :partial => "step_3", :locals => {:therapists => @therapists, :transaction => @transaction})%>");
 initializeCustomerDataTable();
 initializeServiceDataTable();

@@ -1,3 +1,8 @@
+<%= text_field_tag :transaction_id, transaction.id, :class=> "hidden" %>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 class="transaction-modal-title">Create a New Transaction</h3>
+</div>
 <div class="modal-body">
   <div id="step-headers">
     <span class="step1 btn btn-inverse">Step 1: Select the Customer</span>

@@ -1,3 +1,7 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 class="transaction-modal-title">Create a New Transaction</h3>
+</div>
 <div class="modal-body">
   <div id="step-headers">
     <span class="step1 btn disabled">Step 1: Select the Customer</span>
@@ -11,11 +15,11 @@
     <table>
       <tr>
         <td>Therapist: </td>
-        <td><%= select_tag :therapists, options_for_select(therapists.map {|z| z.name}, :selected => transaction.therapist ? transaction.therapist.name : 0), :class=>'therapists'%></td>
+        <td><%= select_tag :therapists, options_for_select(therapists.map {|z| [z.name, z.id]}, :selected => transaction.therapist ? transaction.therapist.id : 0), :class=>'therapists'%></td>
       </tr>
       <tr>
         <td>Transaction Date: </td>
-        <td><%= text_field_tag :date, transaction.transac_date ? transaction.transac_date : Date.current.strftime("%m-%d-%Y"), :class => "transaction-date-selector" %></td>
+        <td><%= text_field_tag :date, transaction.transac_date ? transaction.transac_date : Date.current.strftime("%m-%d-%Y"), :id => "transaction-form-date-selector" %></td>
       </tr>
       <tr>
         <td>Notes</td>

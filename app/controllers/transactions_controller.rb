@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
   layout 'pages'
   before_filter :authenticate_user!
-  before_filter :get_requirements, :only => [:select_customer, :select_service_time]
+  before_filter :get_selection_requirements, :only => [:select_customer, :select_service_time]
   before_filter :get_transaction_requirements, :only => [:initialize_transaction_modal]
   before_filter :initialize_main_table, :only => [:index, :refresh_main_table]
   
@@ -15,17 +15,53 @@ class TransactionsController < ApplicationController
   end
   
   def create
-
+    @transaction = Transaction.new params[:transaction].delete_if { |k, v| v.empty? }
+    unless params[:services].blank?
+      services = params[:services].map { |x| Service.find(x) }
+      @transaction.services = services
+    end
+    if @transaction.save
+      params[:date] = @transaction.transac_date.to_s
+      initialize_main_table
+      flash[:notification] = "Transaction successfully created."
+    end
+    respond_to do |format|
+      format.js {render :layout => false}
+    end
   end
 
   def update
-
+    @transaction = Transaction.find(params[:id])
+    @transaction.update_attributes params[:transaction]
+    unless params[:services].blank?
+      services = params[:services].map { |x| Service.find(x) }
+      @transaction.services = services
+    end
+    if @transaction.save
+      params[:date] = @transaction.transac_date.to_s
+      initialize_main_table
+      flash[:notification] = "Transaction successfully updated."
+    end
+    respond_to do |format|
+      format.js {render :layout => false}
+    end
   end
 
   def destroy
-
+    Transaction.destroy(params[:id])
+    initialize_main_table
+    respond_to do |format|
+      format.js {render :layout => false}
+    end
   end
   
+  def paid
+    @transaction = Transaction.find(params[:id])
+    @transaction.paid = !params[:paid].blank?
+    @transaction.save
+    render :nothing => true
+  end
+
   def initialize_transaction_modal
     respond_to do |format|
       format.js {render :layout => false}
@@ -39,8 +75,7 @@ class TransactionsController < ApplicationController
   end
   
   def select_service_time
-    @am_pm = params[:am_pm]
-    @transaction.transaction_type = @am_pm.downcase == "am" ? 1 : 2
+    @transaction.transaction_type = params[:am_pm]
     respond_to do |format|
       format.js {render :layout => false}
     end
@@ -80,7 +115,7 @@ class TransactionsController < ApplicationController
     @services = Service.order
   end
   
-  def get_requirements
+  def get_selection_requirements
     @customer = Account.find(params[:id])
     @transaction = params[:transaction_id].blank? ? @customer.transactions.new : Transaction.find(params[:transaction_id])
   end

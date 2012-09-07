@@ -4,7 +4,7 @@ class ServiceListDatatable
   def initialize(view)
     @view = view
     @customer = Account.find(params[:id])
-    @am_pm = params[:am_pm] ? params[:am_pm].downcase : "am"
+    @am_pm = params[:am_pm] ? params[:am_pm] : 1
   end
 
   def as_json(options = {})

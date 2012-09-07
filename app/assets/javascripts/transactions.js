@@ -1,3 +1,22 @@
+function ajaxManager(type, url, data, display_modal, title) {
+  display_modal = typeof display_modal == 'undefined' ? false : display_modal;
+  title = typeof title == 'undefined' ? "" : title;
+
+  $(".load-indicator").fadeIn();
+  $.ajax({
+    type: type,
+    url: url,
+    data: data,
+    success: function() {
+      $(".load-indicator").fadeOut();
+      if(display_modal) {
+        $("#step1.modal").modal('show');
+        $("h3.transaction-modal-title").text(title+" Transaction");
+      }     
+    }
+  });
+}
+
 function initializeMainDataTable() {
   $("#transaction-table").dataTable({
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<p>>",
@@ -15,7 +34,7 @@ function initializeMainDataTable() {
                  ]
   });
   
-  $(".date-selector").datepicker({
+  $("#transaction-list-date-selector").datepicker({
     changeYear: true,
     maxDate: new Date,
     yearRange: '-90:+0',
@@ -24,15 +43,7 @@ function initializeMainDataTable() {
     showOn: 'button',
     dateFormat: 'yy-mm-dd',
     onSelect: function(dateText, inst) {
-      $(".load-indicator").fadeIn();
-      $.ajax({
-        type: 'post',
-        url: '/transactions/refresh_main_table',
-        data: {"date": dateText}, 
-        success: function() {
-          $(".load-indicator").fadeOut();
-        }
-      });
+      ajaxManager('post', '/transactions/refresh_main_table', {"date": dateText});
     }
   });
 }
@@ -53,7 +64,7 @@ function initializeCustomerDataTable() {
                  ]
   });
   
-  $(".transaction-date-selector").datepicker({
+  $("#transaction-form-date-selector").datepicker({
     changeYear: true,
     maxDate: new Date,
     yearRange: '-90:+0',
@@ -63,7 +74,7 @@ function initializeCustomerDataTable() {
 
 function initializeServiceDataTable() {
   $("#service-table").dataTable({
-    "sDom": "<'row-fluid'<'span6'f>r>t<'row-fluid'<p>>",
+    "sDom": "<'row-fluid'<f>r>t<'row-fluid'<p>>",
     "sPaginationType": "bootstrap",
     "iDisplayLength": 10,
     "bProcessing": true,
@@ -78,25 +89,8 @@ function initializeServiceDataTable() {
   });
 }
 
-function ajaxManager(type, url, data, modal_flag, crud) {
-  $(".load-indicator").fadeIn();
-  $.ajax({
-    type: type,
-    url: url,
-    data: data,
-    success: function() {
-      $(".load-indicator").fadeOut();
-      if(modal_flag) {
-        $("#step1.modal").modal('show');
-        $("h3.transaction-modal-title").text(crud+" Transaction");
-      }
-    }
-  });
-}
-
 function initializeButtons() {
-  $(".add-dialog").live("click", function() {
-    $(".modal-backdrop").remove();
+  $(".add-btn").live("click", function() {
     ajaxManager('post', '/transactions/initialize_transaction_modal', {}, true, "Create a New");
   });
 
@@ -111,7 +105,7 @@ function initializeButtons() {
     var me = $(this),
         id = me.attr("c_id"),
         transaction_id = $("#transaction_id").val();
-    ajaxManager('post', '/transactions/select_customer', {"id": id, "transaction_id": transaction_id}, false, "");
+    ajaxManager('post', '/transactions/select_customer', {"id": id, "transaction_id": transaction_id});
   });
 
   $(".transition").live("click", function() {
@@ -126,7 +120,7 @@ function initializeButtons() {
         price = me.parents("tr:first").children("td:last").text(), sum = 0;
 
     if($(".service-pool").find("div."+id).size()==0) {
-      $(".service-pool").append("<div class='alert alert-info alert-block "+id+" selected-service' cost="+price+">"+
+      $(".service-pool").append("<div class='alert alert-info alert-block "+id+" selected-service' cost="+price+" s_id="+id+">"+
                                 "<button type='button' class='close' data-dismiss='alert'>×</button>"+
                                 name+
                                 "</div>");
@@ -147,6 +141,49 @@ function initializeButtons() {
         sum += parseFloat($(this).attr("cost"));
     })
     $("#total-cost").val(sum);
+  });
+  
+  $("a.btn.submit").live("click", function() {
+    var me = $(this),
+        services = [],
+        step1 = $("#step1"), step2 = $("#step2"), step3 = $("#step3"),
+        transaction_id = step1.find("#transaction_id").val(),
+        customer_id = step1.find("#customer_id").val(),
+        transaction_type = step2.find("#am-pm-selector").val(),
+        total_cost = step2.find("#total-cost").val(),
+        therapist_id = step3.find("#therapists option:selected").val(),
+        transac_date = step3.find("#transaction-form-date-selector").val(),
+        notes = step3.find("#notes").val(), 
+        url = "/transactions/", 
+        data = {},
+        type = "post";
+        
+    step2.find(".service-pool").children(".selected-service").each(function(i){ services[i] = $(this).attr('s_id'); });
+    data["transaction"] = {
+                            "id": transaction_id,
+                            "transaction_type": transaction_type,
+                            "customer_id": customer_id,
+                            "therapist_id": therapist_id,
+                            "total_price": total_cost,
+                            "transac_date": transac_date,
+                            "notes": notes
+                          };
+    data["services"] = services;
+    if(transaction_id != "") {
+      type="put"
+      url += transaction_id
+    }
+    ajaxManager(type, url, data);
+  });
+
+  $(".paid-btn").live("click", function(){
+    var me = $(this);
+    ajaxManager("post", "/transactions/paid", {"id": me.attr("t_id"), "paid": me.attr("checked")});
+  });
+  
+  $(".delete-btn").live("click", function(){
+    var me = $(this);
+    ajaxManager("delete", "/transactions/"+me.attr("t_id"), {});
   });
 }
 

@@ -10,6 +10,7 @@ FactoryGirl.define do
     after(:build) do |transaction|
       transaction.therapist = FactoryGirl.build(:therapist).account
       transaction.customer = FactoryGirl.build(:clientnonmember).account
+      transaction.services << FactoryGirl.build(:service)
     end
   end
 end

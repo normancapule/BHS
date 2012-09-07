@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 class="transaction-modal-title alert alert-error">Error Messages</h3>
+</div>
+<div class="modal-body">
+  <h5>Errors are preventing your transaction from being saved:
+  <ul>
+    <% errors.full_messages.each do |e| %>
+      <li><%= e %></li>
+    <% end %>
+  </ul>
+</div>
+<div class="modal-footer">
+  <a href="#" class="btn btn-primary cancel" data-dismiss="modal" aria-hidden="true">Ok</a>
+</div>

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :membership do
-    card_number 1
+    card_number 124124
     
     factory :personalized do
       member_type 1

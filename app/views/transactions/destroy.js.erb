@@ -1,0 +1,2 @@
+$("#transactions-list").html("<%= escape_javascript(render :partial => 'transaction_list', :locals => {:transactions => @transactions, :date => @date})%>");
+initializeMainDataTable();

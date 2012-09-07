@@ -3,14 +3,14 @@ class Account < ActiveRecord::Base
   validates_presence_of :firstname, :lastname, :role_id
   validate :unique_name
 
-  has_one :membership
-  has_one :user
+  has_one :membership, :dependent => :destroy
+  has_one :user, :dependent => :destroy
   has_many :customer_transactions, :class_name => "Transaction", :foreign_key => "customer_id"
   has_many :therapist_transactions, :class_name => "Transaction", :foreign_key => "therapist_id"
   
   def unique_name
     if Account.where("firstname like ? and lastname like ?", firstname, lastname).count > 0
-      errors[:name] = "Another account already has that name."
+      errors.add :name, "Another account already has that name."
     end
   end
 

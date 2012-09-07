@@ -16,6 +16,7 @@ Bhs::Application.routes.draw do
       post 'select_customer'
       post 'select_service_time'
       post 'initialize_transaction_modal'
+      post 'paid'
       get 'main_table_data'
       get 'customer_table_data'
       get 'service_table_data'

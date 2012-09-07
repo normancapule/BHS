@@ -3,6 +3,12 @@ FactoryGirl.define do
     password '123qwe'
     password_confirmation '123qwe'
 
+    factory :me do
+      username 'jcapule'
+      email 'jcapule@exist.com'
+      account FactoryGirl.build :adminaccount
+    end
+    
     factory :admin do
       username 'admin'
       email 'admin@example.com'

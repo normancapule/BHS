@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :service do
-    name "MyString"
-    service_type 1
-    member_price_morn 0.0
-    member_price_eve 0.0
-    regular_price 0.0
+    name "Service For All"
+    service_type_id 1
+    member_price_morn 1.0
+    member_price_eve 1.1
+    regular_price 2.0
   end
 end
