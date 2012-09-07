@@ -1,0 +1,2 @@
+$("#show-transaction").html("<%= escape_javascript(render :partial => 'show_transaction', :locals => {:transaction => @transaction})%>");
+$("#show-transaction").modal('show');

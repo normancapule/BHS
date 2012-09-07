@@ -127,7 +127,7 @@ function initializeButtons() {
     }
   });
   
-  $(".am-pm-selector").live("change", function(){
+  $(".am-pm-selector").live("change", function() {
     var me = $(this),
         customer = $(".customer-pool table").attr("c_id"),
         transaction_id = $("#transaction_id").val(),
@@ -135,7 +135,7 @@ function initializeButtons() {
     ajaxManager('post', '/transactions/select_service_time', {"am_pm": value, "id": customer, "transaction_id": transaction_id}, false);
   });
 
-  $(".add-service-btn, .selected-service .close").live("click", function(){
+  $(".add-service-btn, .selected-service .close").live("click", function() {
     var sum = 0;
     $(".service-pool").children(".alert").each(function() {
         sum += parseFloat($(this).attr("cost"));
@@ -176,14 +176,19 @@ function initializeButtons() {
     ajaxManager(type, url, data);
   });
 
-  $(".paid-btn").live("click", function(){
+  $(".paid-btn").live("click", function() {
     var me = $(this);
     ajaxManager("post", "/transactions/paid", {"id": me.attr("t_id"), "paid": me.attr("checked")});
   });
   
-  $(".delete-btn").live("click", function(){
+  $(".delete-btn").live("click", function() {
     var me = $(this);
     ajaxManager("delete", "/transactions/"+me.attr("t_id"), {});
+  });
+
+  $(".show-btn").live("click", function() {
+    var me = $(this);
+    ajaxManager("get", "/transactions/"+me.attr("t_id"), {});
   });
 }
 

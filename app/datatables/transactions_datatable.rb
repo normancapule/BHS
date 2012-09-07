@@ -24,7 +24,7 @@ private
        "1" => h(t.therapist.name),
        "2" => h(t.total_price),
        "3" => "<input type='checkbox' class='paid-btn' value=#{t.paid} #{"checked" if t.paid} t_id=#{t.id}/>",
-       "4" => "<a class='btn btn-small display-btn' t_id='#{t.id}'><i class='icon-eye-open'></i></a>"+
+       "4" => "<a class='btn btn-small show-btn' t_id='#{t.id}'><i class='icon-eye-open'></i></a>"+
               "<a class='btn btn-small edit-btn' t_id='#{t.id}'><i class='icon-pencil'></i></a>"+
               "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this transaction?' t_id='#{t.id}'>"+
               "<i class='icon-trash'></i></a>"

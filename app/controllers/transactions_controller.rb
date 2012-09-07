@@ -55,6 +55,13 @@ class TransactionsController < ApplicationController
     end
   end
   
+  def show
+    @transaction = Transaction.find(params[:id])
+    respond_to do |format|
+      format.js {render :layout => false}
+    end
+  end
+  
   def paid
     @transaction = Transaction.find(params[:id])
     @transaction.paid = !params[:paid].blank?

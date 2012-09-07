@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 class="transaction-modal-title">Transaction of <%= transaction.customer.name %> for <%= transaction.transac_date %></h3>
+</div>
+<div class="modal-body">
+  <table>
+    <tr>
+      <td>Therapist</td>
+      <td><%= transaction.therapist.name %></td>
+    </tr>
+    <tr>
+      <td>Price Type</td>
+      <td><%= transaction.get_type %></td>
+    </tr>
+    <tr>
+      <td>Total Price</td>
+      <td>Php <%= transaction.total_price %></td>
+    </tr>
+    <tr>
+      <td>Services</td>
+      <td>
+        <ul>
+          <% transaction.services.each do |s| %>
+            <li><%= s.name %></li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Paid?</td>
+      <td><%= transaction.paid ? "Yes" : "No" %></td>
+    </tr>
+    <tr>
+      <td>Additional Notes</td>
+      <td><%= transaction.notes %></td>
+    </tr>
+  </table>
+</div>
+<div class="modal-footer">
+  <a href="#" class="btn btn-primary cancel" data-dismiss="modal" aria-hidden="true">Close</a>
+</div>
