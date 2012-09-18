@@ -5,7 +5,8 @@
   </div>
 <% end %>
 
-<%= form_for reservation, :url => create_reservation_pages_path, :method => 'post' do |f| %>
+<%= form_for reservation, :url => reservation_path(reservation.id), :method => 'put' do |f| %>
+  <%= f.text_field :id, :class=>"hidden" %>
   <table id="reservation-form">
     <tr>
       <td class="labels"><%= f.label :name %></td>

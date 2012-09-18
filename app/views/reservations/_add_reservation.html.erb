@@ -5,7 +5,7 @@
   </div>
 <% end %>
 
-<%= form_for reservation, :url => create_reservation_pages_path, :method => 'post' do |f| %>
+<%= form_for reservation, :url => reservations_path, :method => 'post' do |f| %>
   <table id="reservation-form">
     <tr>
       <td class="labels"><%= f.label :name %></td>

@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>Transaction Date: </td>
-        <td><%= text_field_tag :date, transaction.transac_date ? transaction.transac_date : Date.current.strftime("%m-%d-%Y"), :id => "transaction-form-date-selector" %></td>
+        <td><%= text_field_tag :date, transaction.transac_date ? transaction.transac_date : Date.current.strftime("%Y-%m-%d"), :id => "transaction-form-date-selector" %></td>
       </tr>
       <tr>
         <td>Notes</td>

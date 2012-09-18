@@ -9,7 +9,7 @@ class Account < ActiveRecord::Base
   has_many :therapist_transactions, :class_name => "Transaction", :foreign_key => "therapist_id"
   
   def unique_name
-    if Account.where("firstname like ? and lastname like ?", firstname, lastname).count > 0
+    if Account.where("firstname like ? and lastname like ?", firstname, lastname).reject{|x| x.id == self.id}.count > 0
       errors.add :name, "Another account already has that name."
     end
   end

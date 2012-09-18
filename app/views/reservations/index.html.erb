@@ -1,7 +1,15 @@
 <div class="reservations-content">
   <h2>Reservations</h2>
 
-  <table class="reservations-table">
-    
-  </table>
+  <div id="reservation-list">
+    <%= render :partial => "reservation_list", :locals => {:reservations => @reservations} %>
+  </div>
+</div>
+
+
+<div id="add-reservation" class="reservation-dialog" style="display:none">
+  <%= render :partial => "add_reservation", :locals => {:reservation => @reservation} %>
+</div>
+
+<div id="edit-reservation" class="reservation-dialog" style="display:none">
 </div>

@@ -1,6 +1,12 @@
 <% if current_user %>
   <div id="index-body" class="page-body">
     <h2> Home Page </h2>
+    <% if flash[:notification] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <%= flash[:notification] %>
+      </div>
+    <% end %>
     <div id="reservation-list">
       <%= render :partial => "reservation_list", :locals => {:reservations => @reservations} %>
     </div>

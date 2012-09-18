@@ -3,9 +3,7 @@
   <div class="errors <%= !flash.empty? ? '' : 'hidden' %>">
     <p>Notice:<p>
     <ul>
-      <% flash.each do |name, msg| %>
-        <li><%= msg %></li>
-      <% end %>
+      <li><%= flash[:alert] %></li>
     </ul>
   </div>
 

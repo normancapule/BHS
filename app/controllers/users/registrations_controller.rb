@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @new_account = @new_user.build_account account
     if @new_user.valid? and @new_account.valid?
       @new_user.save
+      flash[:notification] = "Account has been successfully created."
       redirect_to root_url
     else
       @errors = true
@@ -29,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @account = @user.account
     user.delete :account
     if @user.update_with_password(user) and @account.update_attributes(account)
+      flash[:notification] = "Account has been successfully updated."
       redirect_to root_url
     else
       @errors = true
