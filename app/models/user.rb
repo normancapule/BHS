@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   belongs_to :account
 
   def self.find_for_authentication(conditions)
-    login = conditions.delete(:login)
-    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
+    login = conditions[:login]
+    where(["username = :value OR email = :value", { :value => login }]).first
   end
 end

@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    date = Date.parse(params[:date])
+    date = Date.parse(params[:add_date])
     @new_reservation = Reservation.new :datetime => DateTime.current
     @reservation = Reservation.new params[:reservation]
     params[:am_pm] == "AM" ? true : params[:hour] = params[:hour].to_i + 12
@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    date = Date.parse(params[:date])
+    date = Date.parse(params[:edit_date])
     update_reservation = Reservation.find params[:reservation][:id]
     params[:am_pm] == "AM" ? true : params[:hour] = params[:hour].to_i + 12
     update_reservation.datetime = DateTime.current.change :hour => params[:hour].to_i, :min => params[:minutes].to_i, :sec => 0,

@@ -1,10 +1,10 @@
+<% if flash[:notification] %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= flash[:notification] %>
+  </div>
+<% end %>
 <% if reservations.count > 0 %>
-  <% if flash[:notification] %>
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">×</button>
-      <%= flash[:notification] %>
-    </div>
-  <% end %>
   <div class="table-headers">
     <span class="label">Reservations for <%= date %> </span>
     <%= text_field_tag :date, "", :id => "reservation-date-selector", :class => "hidden" %>

@@ -92,7 +92,7 @@ function initializeAddDialog() {
     }
   });
   
-  $("#add-date").datepicker({
+  $("#add_date").datepicker({
     changeYear: true,
     maxDate: new Date,
     yearRange: '-90:+0',

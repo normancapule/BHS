@@ -61,4 +61,13 @@ describe User do
       user.should_not be_valid
     end
   end
+
+  describe "authentication" do
+    it "should authenticate with username or email of user" do
+      @user = FactoryGirl.create :admin
+      User.find_for_authentication(:login => @user.username).should == @user
+      User.find_for_authentication(:login => @user.email).should == @user
+      @user.destroy
+    end
+  end
 end

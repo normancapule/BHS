@@ -32,7 +32,7 @@ describe Users::RegistrationsController do
       response.should redirect_to "/"
     end
     
-    it "should notredirect to root if there is an error creating a user" do
+    it "should not redirect to root if there is an error creating a user" do
       @user[:username] = ""
       post :create,
            :user => @user
@@ -41,6 +41,25 @@ describe Users::RegistrationsController do
   end
 
   describe "PUT 'update'" do
-    pending "add some examples to (or delete) #{__FILE__}"
+    before(:each) do
+      @admin = FactoryGirl.create :admin
+      sign_in @admin
+      @update_user = {"account"=>{"firstname"=>"Test", "lastname"=>@admin.account.lastname, "role_id"=>@admin.account.role_id, "nickname"=>"test", "cellphone"=>@admin.account.cellphone, "address"=>@admin.account.address, "birthday"=>@admin.account.birthday.to_s}, 
+                      "username"=>"admin_test", "current_password"=>"123qwe"}
+    end
+
+    it "should update the user" do
+      put :update,
+          :user => @update_user
+      response.code.should == "302"
+      response.should redirect_to "/"
+    end
+    
+    it "should not update the user without the current password" do
+      @update_user[:current_password] = ""
+      put :update,
+          :user => @update_user
+      response.code.should == "200"
+    end
   end
 end
