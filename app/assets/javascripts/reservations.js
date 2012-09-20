@@ -1,3 +1,15 @@
+function ajaxManager(type, url, data) {
+  $(".load-indicator").fadeIn();
+  $.ajax({
+    type: type,
+    url: url,
+    data: data,
+    success: function() {
+      $(".load-indicator").fadeOut();
+    }
+  });
+}
+
 function errorMaker(message) {
   return "<div class='alert alert-error reservation-errors'>"+
            "<button type='button' class='close' data-dismiss='alert'>×</button>"+
@@ -6,6 +18,19 @@ function errorMaker(message) {
 }
 
 function initializeDataTable() {
+  $("#reservation-date-selector").datepicker({
+    changeYear: true,
+    maxDate: new Date,
+    yearRange: '-90:+0',
+    buttonImage: "calendar.gif",
+    buttonImageOnly: true,
+    showOn: 'button',
+    dateFormat: 'yy-mm-dd',
+    onSelect: function(dateText, inst) {
+      ajaxManager('post', '/reservations/refresh_main_table', {"date": dateText});
+    }
+  });
+  
   $("#reservation-table").dataTable({
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<p>>",
     "sPaginationType": "bootstrap",
@@ -40,6 +65,13 @@ function initializeEditDialog() {
       }
     }
   });
+  
+  $("#edit_date").datepicker({
+    changeYear: true,
+    maxDate: new Date,
+    yearRange: '-90:+0',
+    dateFormat: 'yy-mm-dd',
+  });
 }
 
 function initializeAddDialog() {
@@ -58,6 +90,13 @@ function initializeAddDialog() {
         $(this).dialog("close");
       }
     }
+  });
+  
+  $("#add-date").datepicker({
+    changeYear: true,
+    maxDate: new Date,
+    yearRange: '-90:+0',
+    dateFormat: 'yy-mm-dd'
   });
 }
 

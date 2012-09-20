@@ -16,6 +16,10 @@
       <td class="inputs"><%= f.text_field :number_people, :value=>1 %></td>
     </tr>
     <tr>
+      <td class="labels"><%= label_tag :date %></td>
+      <td class="inputs"><%= text_field_tag :add_date, Date.current.strftime("%Y-%m-%d") %></td>
+    </tr>
+    <tr>
       <td class="labels"><%= f.label :time %></td>
       <td class="inputs">
         <%= select_tag :hour, options_for_select((1..12).map{|x| "%02d" % x}, :selected => reservation.hour_12) %>

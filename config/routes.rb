@@ -22,7 +22,11 @@ Bhs::Application.routes.draw do
       get 'service_table_data'
     end
   end
-  resources :reservations
+  resources :reservations do
+    collection do
+      post 'refresh_main_table'
+    end
+  end
   resources :customers
   resources :services
   resources :therapists

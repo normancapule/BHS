@@ -2,7 +2,7 @@
   <h2>Reservations</h2>
 
   <div id="reservation-list">
-    <%= render :partial => "reservation_list", :locals => {:reservations => @reservations} %>
+    <%= render :partial => "reservation_list", :locals => {:reservations => @reservations, :date => @date} %>
   </div>
 </div>
 

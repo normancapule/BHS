@@ -1,4 +1,4 @@
-class PagesDatatable < PagesController
+class ReservationsDatatable < PagesController
   delegate :params, :h, :link_to, to: :@view
 
   def initialize(view)
@@ -35,7 +35,8 @@ private
   end
 
   def fetch_reservations
-    reservations = Reservation.for_today(sort_column, sort_direction)
+    date = params[:date].blank? ? nil : params[:date]
+    reservations = Reservation.for_today(sort_column, sort_direction, date)
     reservations = reservations.page(page).per_page(per_page)
     if params[:sSearch].present?
       reservations = reservations.where("name like :search or number_people like :search", search: "%#params[:sSearch]%")

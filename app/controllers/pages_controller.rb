@@ -6,15 +6,11 @@ class PagesController < ApplicationController
     @reservation = Reservation.new :datetime => DateTime.current
     get_reservations_count
     respond_to do |format|
-      format.json { render json: PagesDatatable.new(view_context)}
+      format.json { render json: ReservationsDatatable.new(view_context)}
       format.html
     end
   end
 
-  def show
-
-  end
-  
   def create_reservation
     @new_reservation = Reservation.new :datetime => DateTime.current
     @reservation = Reservation.new params[:reservation]
