@@ -6,45 +6,49 @@ FactoryGirl.define do
     factory :me do
       username 'jcapule'
       email 'jcapule@exist.com'
-      account FactoryGirl.build :adminaccount
+      after(:build) do |user|
+        user.account = FactoryGirl.build(:adminaccount)
+      end
     end
     
     factory :admin do
       username 'admin'
       email 'admin@example.com'
-      account FactoryGirl.build :adminaccount
+      after(:build) do |user|
+        user.account = FactoryGirl.build(:adminaccount)
+      end
     end
     
     factory :testadmin do
       username 'admin'
       email 'admin@example.com'
-      account FactoryGirl.build :adminaccount
+      after(:build) do |user|
+        user.account = FactoryGirl.build(:adminaccount)
+      end
     end
 
     factory :clientnonmember do
       username 'clientnonmember'
       email 'cnm@example.com'
-      account FactoryGirl.build :client_non_member_account
+      after(:build) do |user|
+        user.account = FactoryGirl.build(:client_non_member_account)
+      end
     end
 
     factory :clientmember do
       username 'clientmember'
       email 'cm@example.com'
-      account FactoryGirl.build :client_member_account
+      after(:build) do |user|
+        user.account = FactoryGirl.build(:client_member_account)
+      end
     end
 
     factory :therapist do
       username 'therapist'
       email 'tp@example.com'
-      account FactoryGirl.build :therapist_account
-    end
-
-    trait :user_t2 do
-      account FactoryGirl.build :therapist_account, :t3
-    end
-
-    trait :user_cnm2 do
-      account FactoryGirl.build :client_non_member_account, :cnm3
+      after(:build) do |user|
+        user.account = FactoryGirl.build(:therapist_account)
+      end
     end
   end
 end

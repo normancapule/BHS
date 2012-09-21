@@ -4,7 +4,7 @@ class Transaction < ActiveRecord::Base
   validate :validate_service_count, :validate_customer, :validate_therapist
 
   belongs_to :customer, :class_name => 'Account'
-  belongs_to :therapist, :class_name => 'Account'
+  belongs_to :therapist, :class_name => 'Account'  
   has_many :transaction_details, :dependent => :destroy
   has_many :services, :through => :transaction_details
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Account do
-  before(:each) do 
+  before(:each) do
     @user = FactoryGirl.build :clientnonmember
     @account = @user.account
     @memberaccount = FactoryGirl.build(:clientmember).account
@@ -15,10 +15,9 @@ describe Account do
   it "should have membership details if member" do
     @memberaccount.membership.should_not be_nil
   end
-  
+
   it "should require a role" do
-    account = @account
-    account.role_id = nil
-    account.should_not be_valid
+    @account.role_id = nil
+    @account.should_not be_valid
   end
 end
