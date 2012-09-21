@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe PagesController do
-  before(:all) do
-    @reserv = FactoryGirl.build :reservation
-    @reserv.datetime.change :month => 1
-    @reserv.save
-    (1..3).each do
-      @reserv = FactoryGirl.create :reservation
-    end
-  end
   
   before(:each) do
     @admin = FactoryGirl.create(:admin)
@@ -32,6 +24,14 @@ describe PagesController do
   end
 
   describe "DELETE 'delete_reservation'" do
+    before(:each) do
+      @reserv = FactoryGirl.build :reservation
+      @reserv.datetime.change :month => 1
+      @reserv.save
+      (1..3).each do
+        @reserv = FactoryGirl.create :reservation
+      end
+    end
     it "should delete a reservation" do
       post :delete_reservation,
            :id => Reservation.last.id,
@@ -42,6 +42,14 @@ describe PagesController do
   end
 
   describe "POST 'update_reservation'" do
+    before(:each) do
+      @reserv = FactoryGirl.build :reservation
+      @reserv.datetime.change :month => 1
+      @reserv.save
+      (1..3).each do
+        @reserv = FactoryGirl.create :reservation
+      end
+    end
     it "should update a reservation" do
       reservation = {:id => Reservation.last.id, :name => "test_me"}
       post :update_reservation,
@@ -54,6 +62,14 @@ describe PagesController do
   end
 
   describe "POST 'edit_reservation'" do
+    before(:each) do
+      @reserv = FactoryGirl.build :reservation
+      @reserv.datetime.change :month => 1
+      @reserv.save
+      (1..3).each do
+        @reserv = FactoryGirl.create :reservation
+      end
+    end
     it "should have the reservation to be edited" do
       post :edit_reservation,
            :id => Reservation.last.id
