@@ -8,4 +8,12 @@ FactoryGirl.define do
     member_price_eve 1.1
     regular_price 2.0
   end
+
+  trait :s2 do
+    name "Service for All 2"
+  end
+  
+  trait :s3 do
+    name "Service for All 3"
+  end
 end

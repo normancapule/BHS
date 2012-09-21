@@ -39,5 +39,22 @@ FactoryGirl.define do
       lastname "LName"
       role_id 3
     end
+
+    trait :cnm2 do
+      firstname "Client Non Member 2"
+    end
+
+    trait :cnm3 do
+      firstname "Client Non Member 3"
+    end
+    
+    trait :t2 do
+      firstname "Therapist Master 2"
+    end
+
+    trait :t3 do
+      firstname "Therapist Master 3"
+    end
+
   end
 end

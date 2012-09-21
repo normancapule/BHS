@@ -1,7 +1,9 @@
 require 'spec_helper'
+require 'pry'
 
 describe TransactionsController do
-  before(:each) do
+  before :each do
+    @transaction = FactoryGirl.create :transaction
     @admin = FactoryGirl.create(:admin)
     sign_in @admin
   end
@@ -22,24 +24,22 @@ describe TransactionsController do
 
   describe "POST 'create'" do
     before :each do
-      FactoryGirl.create :service
-      @customer = FactoryGirl.create :client_non_member_account
-      @therapist = FactoryGirl.create :therapist_account
-      @services = [Service.first.id]
-      @transaction = {"transaction_type"=>"1", "customer_id"=>@customer.id, "therapist_id"=>@therapist.id, "total_price"=>"2", "transac_date"=>"2012-09-20", "notes"=>"asdasdasd"}
+      @customer = FactoryGirl.create :client_non_member_account, :cnm2
+      @therapist = FactoryGirl.create :therapist_account, :t2
+      @services = [FactoryGirl.create(:service, :s2).id]
+      @transaction_attr = {"transaction_type"=>"1", "customer_id"=>@customer.id, "therapist_id"=>@therapist.id, "total_price"=>"2", "transac_date"=>"2012-09-20", "notes"=>"asdasdasd"}
     end
     
     it "should create a transaction" do
       post :create,
-           :transaction => @transaction,
+           :transaction => @transaction_attr,
            :services => @services
-      Transaction.count.should be == 1
+      Transaction.count.should be > 0
     end
   end
 
   describe "PUT 'update'" do
     before :each do
-      @transaction = FactoryGirl.create :transaction
       @update_transaction = {"notes"=>"TESTME", "customer_id"=>@transaction.customer_id}
       @services = @transaction.services.map(&:id)
     end
@@ -53,24 +53,7 @@ describe TransactionsController do
     end
   end
 
-  describe "DELETE 'destroy'" do
-    before :each do
-      @transaction = FactoryGirl.create :transaction
-    end
-
-    it "should delete the transaction" do
-      delete :destroy,
-             :id => @transaction.id
-
-      lambda {@transaction.reload}.should raise_error(ActiveRecord::RecordNotFound)
-    end
-  end
-
   describe "GET 'show'" do
-    before :each do
-      @transaction = FactoryGirl.create :transaction
-    end
-    
     it "should get the selected transaction" do
       get :show,
           :id => @transaction.id
@@ -80,10 +63,6 @@ describe TransactionsController do
   end
   
   describe "POST 'paid'" do
-    before :each do
-      @transaction = FactoryGirl.create :transaction
-    end
-
     it "should change the payment status of a transaction" do
       post :paid,
            :id => @transaction.id,
@@ -95,6 +74,15 @@ describe TransactionsController do
   describe "DataTable actions" do
     it "should be successful when initialize_transaction_modal" do
 
+    end
+  end
+  
+  describe "DELETE 'destroy'" do
+    it "should delete the transaction" do
+      delete :destroy,
+             :id => @transaction.id
+
+      lambda {@transaction.reload}.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

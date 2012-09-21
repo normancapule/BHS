@@ -38,5 +38,13 @@ FactoryGirl.define do
       email 'tp@example.com'
       account FactoryGirl.build :therapist_account
     end
+
+    trait :user_t2 do
+      account FactoryGirl.build :therapist_account, :t3
+    end
+
+    trait :user_cnm2 do
+      account FactoryGirl.build :client_non_member_account, :cnm3
+    end
   end
 end
