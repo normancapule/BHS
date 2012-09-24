@@ -67,12 +67,6 @@ describe TransactionsController do
     end
   end
   
-  describe "DataTable actions" do
-    it "should be successful when initialize_transaction_modal" do
-
-    end
-  end
-  
   describe "DELETE 'destroy'" do
     it "should delete the transaction" do
       transaction = FactoryGirl.create(:transaction)
@@ -82,4 +76,61 @@ describe TransactionsController do
       lambda {transaction.reload}.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
+  
+  describe "DataTable actions and helpers" do
+    it "should be successful when requesting initialize_transaction_modal" do
+      post :initialize_transaction_modal,
+           :format => :js
+      response.should be_success
+    end
+    
+    it "should be successful when requesting initialize_transaction_modal with an existing transaction" do
+      transaction = FactoryGirl.create(:transaction)
+      post :initialize_transaction_modal,
+           :transaction_id => transaction.id,
+           :format => :js
+      response.should be_success
+    end
+    
+    it "should be successful when requesting select_customer" do
+      customer = FactoryGirl.create :client_non_member_account
+      post :select_customer,
+           :id => customer.id,
+           :format => :js
+      response.should be_success
+    end
+
+    it "should be able to select the service time" do
+      customer = FactoryGirl.create :client_non_member_account
+      post :select_service_time,
+           :id => customer.id,
+           :am_pm => 1,
+           :format => :js
+      response.should be_success
+    end
+
+    it "should be successful when requesting main_table_data" do
+      get :main_table_data,
+          :date => Date.current.to_s,
+          :format => :json
+      response.should be_success
+    end
+    
+    it "should be successful when requesting customer_table_data" do
+      customer = FactoryGirl.create :client_non_member_account
+      get :customer_table_data,
+          :id => customer.id,
+          :format => :json
+      response.should be_success
+    end
+    
+    it "should be successful when requesting service_table_data" do
+      customer = FactoryGirl.create :client_non_member_account
+      get :service_table_data,
+          :id => customer.id,
+          :format => :json
+      response.should be_success
+    end
+  end
+  
 end

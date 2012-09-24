@@ -15,7 +15,11 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'will_paginate'
 
-gem 'factory_girl_rails', :group => [:development, :test]
+group :test, :development do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -36,9 +40,8 @@ group :test do
   gem 'capybara'
   gem 'email_spec'
   gem 'database_cleaner'
+  gem 'cucumber-rails', :require => false
   gem 'launchy'
-  gem "cucumber-rails"
-  gem 'rspec-rails'
   gem 'simplecov', :require => false
 end
 
