@@ -1,8 +1,9 @@
 class CustomerListDatatable
   delegate :params, :h, :link_to, to: :@view
 
-  def initialize(view)
+  def initialize(view, type)
     @view = view
+    @type = type
   end
 
   def as_json(options = {})
@@ -17,13 +18,17 @@ class CustomerListDatatable
 private
 
   def data
-   customers.map do |c|
-     {
-       "0" => "<a class='btn btn-small add-customer-btn' c_id='#{c.id}' c_name='#{c.name}'><i class='icon-plus'></i></a>",
-       "1" => h(c.firstname),
-       "2" => h(c.lastname)
-     }
-   end 
+    case @type
+      when "customers"
+      when "transactions"
+        customers.map do |c|
+          {
+            "0" => "<a class='btn btn-small add-customer-btn' c_id='#{c.id}' c_name='#{c.name}'><i class='icon-plus'></i></a>",
+            "1" => h(c.firstname),
+            "2" => h(c.lastname)
+          }
+        end
+    end
   end  
 
   def customers

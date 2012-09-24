@@ -96,7 +96,7 @@ class TransactionsController < ApplicationController
   
   def customer_table_data
     respond_to do |format|
-      format.json { render json: CustomerListDatatable.new(view_context)}
+      format.json { render json: CustomerListDatatable.new(view_context, "transactions")}
     end
   end
   

@@ -1,7 +1,13 @@
 <div class="customers-content">
   <h2>Customers</h2>
 
-  <table class="customers-table">
-    
-  </table>
+  <div id="customer-list">
+    <%= render :partial => "customer_list", :locals => {:customers => @customers} %>
+  </div>
+</div>
+
+<div id="add-customer" class="customer-dialog" style="display:none">
+</div>
+
+<div id="edit-customer" class="customer-dialog" style="display:none">
 </div>

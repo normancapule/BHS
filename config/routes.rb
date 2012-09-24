@@ -27,7 +27,11 @@ Bhs::Application.routes.draw do
       post 'refresh_main_table'
     end
   end
-  resources :customers
+  resources :customers do
+    collection do
+      get 'add'
+    end
+  end
   resources :services
   resources :therapists
   resources :pages, :only => [:index, :show] do
