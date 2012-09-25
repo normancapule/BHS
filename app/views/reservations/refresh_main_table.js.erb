@@ -1,2 +1,2 @@
-$("#reservation-list").html("<%= escape_javascript(render :partial => 'reservation_list', :locals => {:reservations => @reservations, :date => @date})%>");
+$("#reservation-list").html("<%= escape_javascript(render :partial => 'reservation_list', :locals => {:date => @date})%>");
 initializeDataTable();

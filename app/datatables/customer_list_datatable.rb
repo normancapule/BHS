@@ -20,12 +20,26 @@ private
   def data
     case @type
       when "customers"
+        customers.map do |c|
+          {
+            "0" => h(c.firstname),
+            "1" => h(c.lastname),
+            "2" => h(c.get_membership),
+            "3" => "<a class='btn btn-small show-btn' c_id='#{c.id}'><i class='icon-eye-open'></i></a>"+
+                   "<a class='btn btn-small edit-btn' c_id='#{c.id}'><i class='icon-pencil'></i></a>"+
+                   "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this customer?' c_id='#{c.id}'>"+
+                   "<i class='icon-trash'></i></a>"
+          }
+        end
       when "transactions"
         customers.map do |c|
           {
-            "0" => "<a class='btn btn-small add-customer-btn' c_id='#{c.id}' c_name='#{c.name}'><i class='icon-plus'></i></a>",
-            "1" => h(c.firstname),
-            "2" => h(c.lastname)
+            "0" => h(c.firstname),
+            "1" => h(c.lastname),
+            "2" => "<a class='btn btn-small show-btn' c_id='#{c.id}'><i class='icon-eye-open'></i></a>"+
+                   "<a class='btn btn-small edit-btn' c_id='#{c.id}'><i class='icon-pencil'></i></a>"+
+                   "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this customer?' c_id='#{c.id}'>"+
+                   "<i class='icon-trash'></i></a>"
           }
         end
     end

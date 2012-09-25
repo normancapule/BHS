@@ -2,11 +2,12 @@
   <h2>Customers</h2>
 
   <div id="customer-list">
-    <%= render :partial => "customer_list", :locals => {:customers => @customers} %>
+    <%= render :partial => "customer_list" %>
   </div>
 </div>
 
-<div id="add-customer" class="customer-dialog" style="display:none">
+<div id="add-customer" class="customer-dialog">
+  <%= render :partial => "add_customer", :locals => {:customer => @customer} %>
 </div>
 
 <div id="edit-customer" class="customer-dialog" style="display:none">

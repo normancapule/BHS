@@ -130,6 +130,5 @@ class TransactionsController < ApplicationController
   def initialize_main_table
     params[:date] ? date = Date.parse(params[:date]) : date = Date.current
     @date = {:to_parse => date.strftime("%d-%m-%Y"), :format => date.strftime("%B %d, %Y")}
-    @transactions = Transaction.of_date(Date.parse(@date[:to_parse]))
   end
 end

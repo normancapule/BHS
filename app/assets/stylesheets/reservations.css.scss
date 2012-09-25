@@ -5,7 +5,7 @@ div.reservations-content {
     #reservation-table_wrapper {
       .row-fluid:first-child { display:none; }
       table {
-        tbody tr td:last-child { text-align:center; width:60px;}
+        tbody tr td:last-child { text-align:center; width:15%;}
       }
     }
   }
@@ -16,7 +16,8 @@ div.reservations-content {
     #reservation-form {
       td.labels { padding-right:10px; }
       td.inputs {
-        select, #reservation_number_people { width:60px;}
+        #reservation_number_people { width:15%;}
+        #hour, #minutes, #am_pm { width:25% }
       }
     }
   }

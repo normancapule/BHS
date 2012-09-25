@@ -22,10 +22,9 @@ class ReservationsController < ApplicationController
     date = Date.parse(params[:add_date])
     @new_reservation = Reservation.new :datetime => DateTime.current
     @reservation = Reservation.new params[:reservation]
-    params[:am_pm] == "AM" ? true : params[:hour] = params[:hour].to_i + 12
+    am_pm_checker
     @reservation.datetime = DateTime.current.change :hour => params[:hour].to_i, :min => params[:minutes].to_i, :sec => 0,
-                                                          :year => date.year, :month => date.month, :day => date.day
-
+                                                    :year => date.year, :month => date.month, :day => date.day
     if @reservation.save
       flash[:notification] = "Reservation has been created successfully";
       params[:date] = @reservation.datetime.to_date.to_s
@@ -46,7 +45,7 @@ class ReservationsController < ApplicationController
   def update
     date = Date.parse(params[:edit_date])
     update_reservation = Reservation.find params[:reservation][:id]
-    params[:am_pm] == "AM" ? true : params[:hour] = params[:hour].to_i + 12
+    am_pm_checker
     update_reservation.datetime = DateTime.current.change :hour => params[:hour].to_i, :min => params[:minutes].to_i, :sec => 0,
                                                           :year => date.year, :month => date.month, :day => date.day
     if update_reservation.update_attributes params[:reservation]
@@ -75,6 +74,12 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.for_today(nil, nil, @date)
   end
 
-  def get_format_date
+  def am_pm_checker
+    case params[:am_pm]
+      when "AM"
+        params[:hour] = 0 if params[:hour].to_i == 12
+      when "PM"
+        params[:hour] = params[:hour].to_i + 12 if params[:hour].to_i < 12
+    end
   end
 end

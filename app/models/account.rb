@@ -37,6 +37,10 @@ class Account < ActiveRecord::Base
   def member?
     membership ? true : false
   end
+  
+  def get_membership
+    member? ? membership.membership_type : "N/A"
+  end
 
   def transactions
     case role_id

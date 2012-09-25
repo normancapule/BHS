@@ -1,6 +1,6 @@
 <% if @transaction.errors.count == 0 %>
   $("#step3.modal").modal('hide');
-  $("#transactions-list").html("<%= escape_javascript(render :partial => 'transaction_list', :locals => {:transactions => @transactions, :date => @date})%>");
+  $("#transactions-list").html("<%= escape_javascript(render :partial => 'transaction_list', :locals => {:date => @date})%>");
   initializeMainDataTable();
 <% else %>
   $("#error.modal").html("<%= escape_javascript(render :partial => 'error_message', :locals => {:errors => @transaction.errors} ) %>")

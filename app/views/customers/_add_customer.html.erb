@@ -1,0 +1,11 @@
+<% if flash[:error] %>
+  <div class="alert alert-error reservation-errors">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+
+<%= form_for customer, :url => customers_path, :method => 'post' do |f| %>
+  <%= render :partial => 'account', :locals => {:f => f, :customer => customer} %>
+<% end %>

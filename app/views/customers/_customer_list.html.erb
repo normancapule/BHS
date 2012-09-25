@@ -4,21 +4,18 @@
     <%= flash[:notification] %>
   </div>
 <% end %>
-<% if customers.count > 0 %>
-  <div class="table-headers">
-    <a class="btn btn-small add-dialog"><i class="icon-plus"></i></a>
-  </div>
-  <table id="customer-table" class="table table-striped table-bordered table-hover" data-source="<%= customers_url(format: 'json') %>">
-    <thead>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Membership</th>
-      <th></th>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-<% else %>
-  <span class="label label-important">There are no customers in the system.</span>
+
+<div class="table-headers">
+  <span class="label label-info">Add a New Customer</span>
   <a class="btn btn-small add-dialog"><i class="icon-plus"></i></a>
-<% end %>
+</div>
+<table id="customer-table" class="table table-striped table-bordered table-hover" data-source="<%= customers_url(format: 'json') %>">
+  <thead>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Membership</th>
+    <th></th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>

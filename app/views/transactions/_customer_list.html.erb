@@ -1,13 +1,9 @@
-<% if customers.count > 0 %>
-  <table id="customer-table" class="table table-striped table-bordered table-hover" data-source="<%= customer_table_data_transactions_url(format: 'json') %>">
-    <thead>
-      <th></th>
-      <th>Firstname</th>
-      <th>Lastname</th>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-<% else %>
-  <span class="label label-important">There are no customers in the database.</span>
-<% end %>
+<table id="customer-table" class="table table-striped table-bordered table-hover" data-source="<%= customer_table_data_transactions_url(format: 'json') %>">
+  <thead>
+    <th></th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>

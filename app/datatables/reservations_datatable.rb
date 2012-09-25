@@ -8,7 +8,7 @@ class ReservationsDatatable < PagesController
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: reservations.count,
+      iTotalRecords: reservations.size,
       iTotalDisplayRecords: reservations.total_entries,
       aaData: data
     }
@@ -36,12 +36,12 @@ private
 
   def fetch_reservations
     date = params[:date].blank? ? nil : params[:date]
-    reservations = Reservation.for_today(sort_column, sort_direction, date)
-    reservations = reservations.page(page).per_page(per_page)
+    reservs = Reservation.for_today(sort_column, sort_direction, date)
+    reservs = reservs.page(page).per_page(per_page)
     if params[:sSearch].present?
-      reservations = reservations.where("name like :search or number_people like :search", search: "%#params[:sSearch]%")
+      reservs = reservs.where("name like :search or number_people like :search", search: "%#params[:sSearch]%")
     end
-    reservations
+    reservs
   end
 
   def page
