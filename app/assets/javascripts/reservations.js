@@ -43,7 +43,7 @@ function initializeDataTable() {
                    null,
                    null,
                    { "asSorting": ["desc"] },
-                   { "asSorting": [] },
+                   { "bSortable": false }
                  ],
   });
 }

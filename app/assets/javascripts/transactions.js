@@ -30,7 +30,7 @@ function initializeMainDataTable() {
                    null,
                    null,
                    null,
-                   { "asSorting": [] }
+                   { "bSortable": false }
                  ]
   });
   

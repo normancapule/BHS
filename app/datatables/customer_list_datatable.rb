@@ -24,9 +24,12 @@ private
           {
             "0" => h(c.firstname),
             "1" => h(c.lastname),
-            "2" => h(c.get_membership),
-            "3" => "<a class='btn btn-small show-btn' c_id='#{c.id}'><i class='icon-eye-open'></i></a>"+
-                   "<a class='btn btn-small edit-btn' c_id='#{c.id}'><i class='icon-pencil'></i></a>"+
+            "2" => h(c.nickname),
+            "3" => h(c.get_membership),
+            "4" => h(c.address),
+            "5" => h(c.cellphone),
+            "6" => h(c.birthday),
+            "7" => "<a class='btn btn-small edit-btn' c_id='#{c.id}'><i class='icon-pencil'></i></a>"+
                    "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this customer?' c_id='#{c.id}'>"+
                    "<i class='icon-trash'></i></a>"
           }
@@ -69,7 +72,7 @@ private
   end
 
   def sort_column
-    columns = %w[firstname firstname lastname]
+    columns = %w[firstname lastname nickname lastname lastname cellphone lastname]
     columns[params[:iSortCol_0].to_i]
   end
 

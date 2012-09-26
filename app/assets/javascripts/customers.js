@@ -82,7 +82,11 @@ function initializeDataTable() {
                    null,
                    null,
                    null,
-                   { "asSorting": [] },
+                   { "bSortable": false },
+                   null,
+                   null,
+                   { "bSortable": false },
+                   { "bSortable": false }
                  ],
   });
 }
