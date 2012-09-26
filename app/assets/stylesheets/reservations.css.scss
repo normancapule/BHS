@@ -16,6 +16,7 @@ div.reservations-content {
     #reservation-form {
       td.labels { padding-right:10px; }
       td.inputs {
+        div.control-group.error { margin-bottom:0px; }
         #reservation_number_people { width:15%;}
         #hour, #minutes, #am_pm { width:25% }
       }

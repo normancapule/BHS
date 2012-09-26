@@ -5,7 +5,9 @@
   </div>
 <% end %>
 
+<div id="error-message">
+</div>
 
-<%= form_for customer, :url => customers_path, :method => 'post' do |f| %>
+<%= form_for customer, :url => customers_path(customer), :method => 'post', :html => {:id => "new-customer"} do |f| %>
   <%= render :partial => 'account', :locals => {:f => f, :customer => customer} %>
 <% end %>

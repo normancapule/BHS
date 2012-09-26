@@ -11,7 +11,7 @@ function ajaxManager(type, url, data) {
 }
 
 function errorMaker(message) {
-  return "<div class='alert alert-error reservation-errors'>"+
+  return "<div class='alert alert-error'>"+
            "<button type='button' class='close' data-dismiss='alert'>×</button>"+
            message +
          "</div>";

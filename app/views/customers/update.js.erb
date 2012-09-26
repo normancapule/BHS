@@ -1,0 +1,8 @@
+<% if @customer.errors.size == 0 %>
+  $("#customer-list").html("<%= escape_javascript(render :partial => 'customer_list') %>");
+  $("#edit-customer").dialog("close");
+  initializeDataTable();
+<% else %>
+  $("#edit-customer #error-message").html("<%= escape_javascript(render :partial => 'error_message', :locals => {:errors => @customer.errors} ) %>")
+<% end %>
+

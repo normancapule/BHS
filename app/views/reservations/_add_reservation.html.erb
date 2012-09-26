@@ -8,12 +8,28 @@
 <%= form_for reservation, :url => reservations_path, :method => 'post' do |f| %>
   <table id="reservation-form">
     <tr>
-      <td class="labels"><%= f.label :name %></td>
-      <td class="inputs"><%= f.text_field :name %></td>
+      <td class="labels">
+        <div class="control-group error">
+          <%= f.label :name %>*
+        </div>
+      </td>
+      <td class="inputs">
+        <div class="control-group error">
+          <%= f.text_field :name %>
+        </div>
+      </td>
     </tr>
     <tr>
-      <td class="labels"><%= f.label :number_of_people %></td>
-      <td class="inputs"><%= f.text_field :number_people, :value=>1 %></td>
+      <td class="labels">
+        <div class="control-group error">
+          <%= f.label :number_of_people %>*
+        </div>
+      </td>
+      <td class="inputs">
+        <div class="control-group error">
+          <%= f.text_field :number_people, :value=>1 %>
+        </div>
+      </td>
     </tr>
     <tr>
       <td class="labels"><%= label_tag :date %></td>
