@@ -22,7 +22,7 @@ class CustomersController < ApplicationController
     account.delete :membership
     @customer = Account.new_customer account, membership
     if @customer.save
-      flash[:notification] = "Customer has been created successfully";
+      flash[:notification] = "Account has been created successfully";
     end
     respond_to do |format|
       format.js {render :layout => false}
@@ -49,7 +49,7 @@ class CustomersController < ApplicationController
         @customer.membership ? @customer.membership.update_attributes(membership) : @customer.build_membership(membership)
     end
     if @customer.save
-      flash[:notification] = "Customer has been updated successfully";
+      flash[:notification] = "Account has been updated successfully";
     end
     respond_to do |format|
       format.js {render :layout => false}

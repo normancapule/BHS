@@ -18,15 +18,8 @@ function errorMaker(message) {
 }
 
 function initializeAddDialog() {
-  $("#account_birthday").datepicker({
-    changeYear: true,
-    maxDate: new Date,
-    yearRange: '-90:+0',
-    dateFormat: 'yy-mm-dd'
-  });
-  
-  $("#add-customer").dialog({
-    title: "Add a Customer",
+  $("#add-therapist").dialog({
+    title: "Add a Therapist",
     autoOpen: true,
     width: '40%',
     height: '400',
@@ -34,7 +27,7 @@ function initializeAddDialog() {
     resizable: false,
     buttons: {
       "Save": function() {
-        $("#new-customer").submit()
+        $("#new-therapist").submit()
       },
       "Close": function() {
         $(this).dialog("close");
@@ -44,15 +37,8 @@ function initializeAddDialog() {
 }
 
 function initializeEditDialog() {
-  $("#account_birthday").datepicker({
-    changeYear: true,
-    maxDate: new Date,
-    yearRange: '-90:+0',
-    dateFormat: 'yy-mm-dd'
-  });
-  
-  $("#edit-customer").dialog({
-    title: "Edit a Customer",
+  $("#edit-therapist").dialog({
+    title: "Edit a Therapist",
     autoOpen: true,
     width: '40%',
     height: '400',
@@ -60,7 +46,7 @@ function initializeEditDialog() {
     resizable: false,
     buttons: {
       "Save": function() {
-        $("#edit-customer-form").submit()
+        $("#edit-therapist-form").submit()
       },
       "Close": function() {
         $(this).dialog("close");
@@ -70,38 +56,34 @@ function initializeEditDialog() {
 }
 
 function initializeDataTable() {
-  $("#customer-table").dataTable({
+  $("#therapist-table").dataTable({
     "sDom": "<'row-fluid'<f>r>t<'row-fluid'<l><p>>",
     "sPaginationType": "bootstrap",
     "iDisplayLength": 10,
     "bProcessing": true,
     "bServerSide": true,
-    "sAjaxSource": $("#customer-table").data("source"),
+    "sAjaxSource": $("#therapist-table").data("source"),
     "aaSorting": [[ 1, "desc" ]],
     "aoColumns": [
                    null,
                    null,
                    null,
-                   { "bSortable": false },
-                   null,
-                   null,
-                   { "bSortable": false },
-                   { "bSortable": false, "sWidth": "15%" }
-                 ],
+                   { "bSortable": false, "sWidth": "11%" }
+                 ]
   });
 }
 
 function initializeButtons() {
   $(".add-dialog").live("click", function() {
-    ajaxManager('get', '/customers/add');
+    ajaxManager('get', '/therapists/add');
   });
 
   $("a.edit-btn").live("click", function() {
     var me = $(this);
-    ajaxManager('get', '/customers/'+me.attr('c_id')+'/edit');
+    ajaxManager('get', '/therapists/'+me.attr('c_id')+'/edit');
   });
   
-  $("#edit-customer-form, #new-customer").live('submit', function(e) {
+  $("#edit-therapist-form, #new-therapist").live('submit', function(e) {
     e.preventDefault();
     var flag = true,
         me = $(this),
@@ -114,10 +96,6 @@ function initializeButtons() {
       flag = false;
     }
     
-    if(parent.find("#card_number").val().length == 0 && parent.find("#account_membership").val() > 0) {
-      flag = false;
-    }
-    
     if(flag) {
       console.log(me.attr('action'));
       ajaxManager("post", me.attr('action'), me.serialize());
@@ -126,17 +104,9 @@ function initializeButtons() {
     }
   });
 
-  $("#account_membership").live('change', function() {
-    var me = $(this);
-    if(me.val() > 0)
-      $("div.card-number").show();
-    else
-      $("div.card-number").hide();
-  });
-
   $("a.delete-btn").live('click', function() {
     var me = $(this);
-    ajaxManager("delete", "/customers/"+me.attr("c_id"), {});
+    ajaxManager("delete", "/therapists/"+me.attr("c_id"), {});
   });
 }
 

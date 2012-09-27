@@ -25,8 +25,7 @@ private
        "3" => h(t.services.map(&:name).join(', ')),
        "4" => h(t.notes),
        "5" => "<input type='checkbox' class='paid-btn' value=#{t.paid} #{"checked" if t.paid} t_id=#{t.id}/>",
-       "6" => "<a class='btn btn-small show-btn' t_id='#{t.id}'><i class='icon-eye-open'></i></a>"+
-              "<a class='btn btn-small edit-btn' t_id='#{t.id}'><i class='icon-pencil'></i></a>"+
+       "6" => "<a class='btn btn-small edit-btn' t_id='#{t.id}'><i class='icon-pencil'></i></a>"+
               "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this transaction?' t_id='#{t.id}'>"+
               "<i class='icon-trash'></i></a>"
      }

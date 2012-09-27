@@ -19,7 +19,7 @@ function ajaxManager(type, url, data, display_modal, title) {
 
 function initializeMainDataTable() {
   $("#transaction-table").dataTable({
-    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<p>>",
+    "sDom": "<'row-fluid'<f>r>t<'row-fluid'<l><p>>",
     "sPaginationType": "bootstrap",
     "iDisplayLength": 10,
     "bProcessing": true,
@@ -31,8 +31,8 @@ function initializeMainDataTable() {
                    null,
                    { "bSortable": false },
                    { "bSortable": false },
-                   null,
-                   { "bSortable": false }
+                   { "sWidth": '5%' },
+                   { "bSortable": false, "sWidth": '11%' }
                  ]
   });
   
@@ -186,11 +186,6 @@ function initializeButtons() {
   $(".delete-btn").live("click", function() {
     var me = $(this);
     ajaxManager("delete", "/transactions/"+me.attr("t_id"), {});
-  });
-
-  $(".show-btn").live("click", function() {
-    var me = $(this);
-    ajaxManager("get", "/transactions/"+me.attr("t_id"), {});
   });
 }
 

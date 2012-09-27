@@ -33,7 +33,11 @@ Bhs::Application.routes.draw do
     end
   end
   resources :services
-  resources :therapists
+  resources :therapists do
+    collection do
+      get 'add'
+    end
+  end
   resources :pages, :only => [:index, :show] do
     collection do 
       post 'create_reservation'

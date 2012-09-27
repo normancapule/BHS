@@ -32,7 +32,7 @@ function initializeDataTable() {
   });
   
   $("#reservation-table").dataTable({
-    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<p>>",
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<l><p>>",
     "sPaginationType": "bootstrap",
     "iDisplayLength": 10,
     "bProcessing": true,
@@ -41,9 +41,9 @@ function initializeDataTable() {
     "aaSorting": [[ 2, "desc" ]],
     "aoColumns": [
                    null,
-                   null,
-                   { "asSorting": ["desc"] },
-                   { "bSortable": false }
+                   { "sWidth": "20%" },
+                   { "sWidth": "11%" },
+                   { "bSortable": false, "sWidth": "11%" }
                  ],
   });
 }

@@ -4,7 +4,6 @@ class AccountListDatatable
   def initialize(view, type)
     @view = view
     @type = type
-    puts @type
   end
 
   def as_json(options = {})
@@ -47,7 +46,8 @@ private
           {
             "0" => h(a.firstname),
             "1" => h(a.lastname),
-            "2" => "<a class='btn btn-small edit-btn' c_id='#{a.id}'><i class='icon-pencil'></i></a>"+
+            "2" => h(a.nickname),
+            "3" => "<a class='btn btn-small edit-btn' c_id='#{a.id}'><i class='icon-pencil'></i></a>"+
                    "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this customer?' c_id='#{a.id}'>"+
                    "<i class='icon-trash'></i></a>"
           }
@@ -78,6 +78,7 @@ private
     case @type
       when "transactions" then columns = %w[nil] + columns
       when "customers" then columns += %w[nickname nil nil cellphone]
+      when "therapists" then columns = columns + %w[nickname]
     end
     columns += %w[nil]
     columns[params[:iSortCol_0].to_i]=="nil" ? nil : columns[params[:iSortCol_0].to_i]

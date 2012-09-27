@@ -1,0 +1,8 @@
+<% if @therapist.errors.size == 0 %>
+  $("#therapist-list").html("<%= escape_javascript(render :partial => 'therapist_list') %>");
+  $("#edit-therapist").dialog("close");
+  initializeDataTable();
+<% else %>
+  $("#edit-therapist #error-message").html("<%= escape_javascript(render :partial => 'error_message', :locals => {:errors => @therapist.errors} ) %>")
+<% end %>
+
