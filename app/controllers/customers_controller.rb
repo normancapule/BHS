@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render json: CustomerListDatatable.new(view_context, "customers")}
+      format.json { render json: AccountListDatatable.new(view_context, "customers")}
       format.html
     end
   end

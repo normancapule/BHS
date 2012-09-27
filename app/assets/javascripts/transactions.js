@@ -29,6 +29,8 @@ function initializeMainDataTable() {
                    null,
                    null,
                    null,
+                   { "bSortable": false },
+                   { "bSortable": false },
                    null,
                    { "bSortable": false }
                  ]
@@ -58,7 +60,7 @@ function initializeCustomerDataTable() {
     "sAjaxSource": $("#customer-table").data("source"),
     "aaSorting": [[ 2, "desc" ]],
     "aoColumns": [
-                   { "asSorting": [], "sWidth": '1%' },
+                   { "bSortable": false, "sWidth": '1%' },
                    { "sWidth": '8%' },
                    { "sWidth": '8%' }
                  ]
@@ -82,9 +84,9 @@ function initializeServiceDataTable() {
     "sAjaxSource": $("#service-table").data("source"),
     "aaSorting": [[ 1, "desc" ]],
     "aoColumns": [
-                   { "asSorting": [], "sWidth": '1%' },
+                   { "bSortable": false, "sWidth": '1%' },
                    { "sWidth": '10%' },
-                   { "asSorting": [], "sWidth": '1%' }
+                   { "sWidth": '1%' }
                  ]
   });
 }

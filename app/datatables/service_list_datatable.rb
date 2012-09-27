@@ -1,5 +1,5 @@
 class ServiceListDatatable
-  delegate :params, :h, :link_to, to: :@view
+  include CommonMethods
 
   def initialize(view)
     @view = view
@@ -11,13 +11,12 @@ class ServiceListDatatable
     {
       sEcho: params[:sEcho].to_i,
       iTotalRecords: services.count,
-      iTotalDisplayRecords: services.total_entries,
+      iTotalDisplayRecords: services.size,
       aaData: data
     }
   end
 
 private
-
   def data
    services.map do |s|
      {
@@ -39,23 +38,16 @@ private
       services = services.where(['name LIKE :search',
                                   search: "%#{params[:sSearch]}%"])
     end
-    services.order("#{sort_column} #{sort_direction}")  
-  end
-
-  def page
-    params[:iDisplayStart].to_i/per_page + 1
-  end
-  
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+    if sort_column == "price"
+      sort_direction == "asc" ? services.sort! {|x| x.get_price(@am_pm, @customer)} : services.sort {|x| x.get_price(@am_pm, @customer)}.reverse!
+    elsif sort_column and sort_direction
+      services.order("#{sort_column} #{sort_direction}")  
+    end
+    services
   end
 
   def sort_column
-    columns = %w[name name name]
-    columns[params[:iSortCol_0].to_i]
-  end
-
-  def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
+    columns = %w[nil name price]
+    columns[params[:iSortCol_0].to_i]=="nil" ? nil : columns[params[:iSortCol_0].to_i]
   end
 end

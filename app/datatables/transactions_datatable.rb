@@ -1,5 +1,5 @@
 class TransactionsDatatable
-  delegate :params, :h, :link_to, to: :@view
+  include CommonMethods
 
   def initialize(view, date)
     @view = view
@@ -16,15 +16,16 @@ class TransactionsDatatable
   end
 
 private
-
   def data
    transactions.map do |t|
      {
        "0" => h(t.customer.name),
        "1" => h(t.therapist.name),
        "2" => h(t.total_price),
-       "3" => "<input type='checkbox' class='paid-btn' value=#{t.paid} #{"checked" if t.paid} t_id=#{t.id}/>",
-       "4" => "<a class='btn btn-small show-btn' t_id='#{t.id}'><i class='icon-eye-open'></i></a>"+
+       "3" => h(t.services.map(&:name).join(', ')),
+       "4" => h(t.notes),
+       "5" => "<input type='checkbox' class='paid-btn' value=#{t.paid} #{"checked" if t.paid} t_id=#{t.id}/>",
+       "6" => "<a class='btn btn-small show-btn' t_id='#{t.id}'><i class='icon-eye-open'></i></a>"+
               "<a class='btn btn-small edit-btn' t_id='#{t.id}'><i class='icon-pencil'></i></a>"+
               "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this transaction?' t_id='#{t.id}'>"+
               "<i class='icon-trash'></i></a>"
@@ -46,21 +47,9 @@ private
     end
     transactions
   end
-
-  def page
-    params[:iDisplayStart].to_i/per_page + 1
-  end
   
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
-  end
-
   def sort_column
-    columns = %w[customer therapist total_price paid]
-    columns[params[:iSortCol_0].to_i]
-  end
-
-  def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
+    columns = %w[customer therapist total_price nil nil paid nil]
+    columns[params[:iSortCol_0].to_i]=="nil" ? nil : columns[params[:iSortCol_0].to_i]
   end
 end

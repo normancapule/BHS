@@ -126,6 +126,7 @@ describe TransactionsController do
     
     it "should be successful when requesting service_table_data" do
       customer = FactoryGirl.create :client_non_member_account
+      FactoryGirl.create :service, :s2
       get :service_table_data,
           :id => customer.id,
           :format => :json
