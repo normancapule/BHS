@@ -1,0 +1,7 @@
+<% if @service.errors.size == 0 %>
+  $("#service-list").html("<%= escape_javascript(render :partial => 'service_list') %>");
+  $("#edit-service").dialog("close");
+  initializeDataTable();
+<% else %>
+  $("#edit-service #error-message").html("<%= escape_javascript(render :partial => 'error_message', :locals => {:errors => @service.errors} ) %>")
+<% end %>

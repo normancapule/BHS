@@ -1,0 +1,27 @@
+<div class="control-group error">
+  <%= f.label :name, :class=>"bold" %>*<br />
+  <%= f.text_field :name %>
+</div>
+
+<div class="control-group error">
+  <%= f.label :service_type_id, :class=>"bold" %>*<br />
+  <%= f.select :service_type_id, 
+               options_for_select(Service.types.map {|key, val| [val, key.to_i]}, 
+               :selected => service.service_type_id ? service.service_type_id : 1), 
+               :class=>'therapists'%></td>
+</div>
+
+<div class="membership-options">
+  <%= f.label :member_morning_price %><br />
+  <%= f.text_field :member_price_morn %>
+</div>
+
+<div class="membership-options">
+  <%= f.label :member_evening_price %><br />
+  <%= f.text_field :member_price_eve %>
+</div>
+
+<div class="regular-options" style="<%= 'display:none;' if service.members_only? %>">
+  <%= f.label :regular_price %><br />
+  <%= f.text_field :regular_price %>
+</div>

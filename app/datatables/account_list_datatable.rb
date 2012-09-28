@@ -48,7 +48,7 @@ private
             "1" => h(a.lastname),
             "2" => h(a.nickname),
             "3" => "<a class='btn btn-small edit-btn' c_id='#{a.id}'><i class='icon-pencil'></i></a>"+
-                   "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this customer?' c_id='#{a.id}'>"+
+                   "<a class='btn btn-small delete-btn' data-confirm='Are you sure you want to delete this therapist?' c_id='#{a.id}'>"+
                    "<i class='icon-trash'></i></a>"
           }
         end
@@ -67,7 +67,8 @@ private
     accounts = accounts.page(page).per_page(per_page)
     if params[:sSearch].present?
       accounts = accounts.where(['firstname LIKE :search OR 
-                                  lastname LIKE :search', 
+                                  lastname LIKE :search OR
+                                  nickname LIKE :search', 
                                   search: "%#{params[:sSearch]}%"])
     end
     sort_column ? accounts.order("#{sort_column} #{sort_direction}") : accounts

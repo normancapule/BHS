@@ -7,13 +7,6 @@ class Service < ActiveRecord::Base
     {"1"=>"Member and Non-Member", "2"=> "Members Only"}
   end
 
-  def service_type
-    case service_type_id
-      when 1 then "Member and Non-Member"
-      when 2 then "Members Only"
-    end
-  end
-
   def self.get_services(customer)
     customer.member? ? self.get_services_for_members : self.get_services_for_all
   end
@@ -24,6 +17,17 @@ class Service < ActiveRecord::Base
 
   def self.get_services_for_members
     where "service_type_id = 1 OR service_type_id = 2"
+  end
+
+  def service_type
+    case service_type_id
+      when 1 then "Member and Non-Member"
+      when 2 then "Members Only"
+    end
+  end
+  
+  def members_only?
+    service_type_id == 2
   end
 
   def get_price(am_pm, customer)
