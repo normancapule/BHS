@@ -6,7 +6,7 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rb-readline'
-gem 'mysql2'
+gem 'pg'
 gem 'devise'
 gem 'jquery-rails'
 gem 'backbone-on-rails'
