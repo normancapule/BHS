@@ -14,6 +14,7 @@ gem 'i18n-js'
 gem 'execjs'
 gem 'therubyracer'
 gem 'will_paginate'
+gem 'heroku'
 
 group :test, :development do
   gem 'factory_girl_rails'
