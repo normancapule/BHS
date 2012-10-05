@@ -9,18 +9,18 @@ FactoryGirl.define do
     address "Text"
     birthday "2012-08-22"
     
-    factory :meaccount do
-      firstname "John Norman"
-      lastname "Capule"
-      role_id 1
-    end
-    
     factory :adminaccount do
       firstname "FName"
       lastname "LName"
       role_id 1
     end
 
+    factory :meaccount do
+      firstname "Glenda"
+      lastname "Bernardo"
+      role_id 1
+    end
+    
     factory :client_non_member_account do
       firstname "Client Non Member"
       lastname "LName"

@@ -18,6 +18,7 @@ describe PagesController do
     it "should create a new reservation" do
       post :create_reservation,
            :reservation => FactoryGirl.attributes_for(:reservation),
+           :am_pm => "AM",
            :format => :js
       response.code.should == "200"
     end
@@ -54,6 +55,7 @@ describe PagesController do
       reservation = {:id => Reservation.last.id, :name => "test_me"}
       post :update_reservation,
            :reservation => reservation,
+           :am_pm => "PM",
            :format => :js
 
       Reservation.last.name.should == "test_me"

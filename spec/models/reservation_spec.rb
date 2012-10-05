@@ -5,6 +5,11 @@ describe Reservation do
     @reserv = FactoryGirl.build :reservation
   end
   
+  describe "helper methods" do
+    it "should return all reservations given the date" do
+      Reservation.for_today nil, nil, Date.current.to_s
+    end
+  end
   describe "formatted data" do
     it "should give you formatted time" do
       @reserv.formatted_time

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe TransactionsController do
   before :each do

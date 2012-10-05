@@ -4,10 +4,12 @@ FactoryGirl.define do
     password_confirmation '123qwe'
 
     factory :me do
-      username 'jcapule'
-      email 'jcapule@exist.com'
+      username 'admin'
+      email 'carenebernardo@gmail.com'
+      password 'glenda2012'
+      password_confirmation 'glenda2012'
       after(:build) do |user|
-        user.account = FactoryGirl.build(:adminaccount)
+        user.account = FactoryGirl.build(:meaccount)
       end
     end
     
