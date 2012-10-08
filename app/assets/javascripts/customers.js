@@ -119,7 +119,6 @@ function initializeButtons() {
     }
     
     if(flag) {
-      console.log(me.attr('action'));
       ajaxManager("post", me.attr('action'), me.serialize());
     } else {
       parent.prepend(errorMaker("Please fill out all required data."));

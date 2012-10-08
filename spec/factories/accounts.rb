@@ -31,7 +31,9 @@ FactoryGirl.define do
       firstname "Client Member"
       lastname "LName"
       role_id 2
-      association :membership, :strategy => :build
+      after(:build) do |me|
+        me.membership = FactoryGirl.build :family
+      end
     end
     
     factory :therapist_account do

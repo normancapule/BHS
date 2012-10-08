@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
 
   def update
     date = Date.parse(params[:edit_date])
-    update_reservation = Reservation.find params[:reservation][:id]
+    update_reservation = Reservation.find params[:id]
     am_pm_checker
     update_reservation.datetime = DateTime.current.change :hour => params[:hour].to_i, :min => params[:minutes].to_i, :sec => 0,
                                                           :year => date.year, :month => date.month, :day => date.day
