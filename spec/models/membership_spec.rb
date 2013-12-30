@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id          :integer          not null, primary key
+#  account_id  :integer
+#  card_number :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  member_type :integer
+#
+
 require 'spec_helper'
 
 describe Membership do

@@ -1,6 +1,5 @@
 class TransactionsController < ApplicationController
   layout 'pages'
-  before_filter :authenticate_user!
   before_filter :get_selection_requirements, :only => [:select_customer, :select_service_time]
   before_filter :get_transaction_requirements, :only => [:initialize_transaction_modal]
   before_filter :initialize_main_table, :only => [:index, :refresh_main_table]

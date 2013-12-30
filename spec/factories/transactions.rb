@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: transactions
+#
+#  id               :integer          not null, primary key
+#  customer_id      :integer
+#  total_price      :float            default(0.0)
+#  therapist_id     :integer
+#  notes            :text
+#  paid             :boolean          default(FALSE)
+#  transaction_type :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  transac_date     :date
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

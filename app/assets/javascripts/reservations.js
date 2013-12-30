@@ -20,7 +20,6 @@ function errorMaker(message) {
 function initializeDataTable() {
   $("#reservation-date-selector").datepicker({
     changeYear: true,
-    maxDate: new Date,
     yearRange: '-90:+0',
     buttonImage: "calendar.gif",
     buttonImageOnly: true,
@@ -68,7 +67,6 @@ function initializeEditDialog() {
   
   $("#edit_date").datepicker({
     changeYear: true,
-    maxDate: new Date,
     yearRange: '-90:+0',
     dateFormat: 'yy-mm-dd',
   });
@@ -94,7 +92,6 @@ function initializeAddDialog() {
   
   $("#add_date").datepicker({
     changeYear: true,
-    maxDate: new Date,
     yearRange: '-90:+0',
     dateFormat: 'yy-mm-dd'
   });

@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id         :integer          not null, primary key
+#  firstname  :string(255)
+#  lastname   :string(255)
+#  nickname   :string(255)
+#  cellphone  :integer
+#  address    :text
+#  birthday   :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  role_id    :integer
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

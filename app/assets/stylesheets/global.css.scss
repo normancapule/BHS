@@ -74,17 +74,17 @@ div.container {
       margin-bottom: 0px;
       padding: 10px 0px 0px 8px;
       a { 
-        background-image: url('Shiny_green_button_by_Ahimsa1.png'); 
+        background: #929090;
         background-size: 150px 50px;
         background-repeat: no-repeat;
         display: block;
         text-align: center;
         width: 150px;
-        height: 50px;
         color: white;
         font-size: 16px;
         font-weight: bold;
-        padding-top: 14px;
+        padding: 14px 0px;
+        margin: 14px 0px;
       }
     }
   }

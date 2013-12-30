@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id         :integer          not null, primary key
+#  firstname  :string(255)
+#  lastname   :string(255)
+#  nickname   :string(255)
+#  cellphone  :integer
+#  address    :text
+#  birthday   :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  role_id    :integer
+#
+
 class Account < ActiveRecord::Base
   attr_accessible :address, :birthday, :cellphone, :firstname, :lastname, :nickname, :role_id
   validates_presence_of :firstname, :lastname, :role_id

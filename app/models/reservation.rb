@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: reservations
+#
+#  id            :integer          not null, primary key
+#  number_people :integer
+#  datetime      :datetime
+#  name          :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class Reservation < ActiveRecord::Base
   attr_accessible :name, :number_people, :datetime
   validates_presence_of :name, :number_people, :datetime

@@ -56,6 +56,15 @@ module Bhs
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.assets.precompile << Proc.new { |path|
+      if path =~ /\.(css|js|svg|eot|woff|ttf)\z/
+        full_path = Rails.application.assets.resolve(path).to_path
+        app_assets_path = Rails.root.join('app', 'assets').to_path
+        (full_path.starts_with?(app_assets_path) and full_path["pdf"].nil?)
+      else
+        false
+      end
+    }
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

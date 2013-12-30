@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   layout 'pages'
-  before_filter :authenticate_user!, :except => [:index]
   
   def index
     @reservation = Reservation.new :datetime => DateTime.current

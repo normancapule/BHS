@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id          :integer          not null, primary key
+#  account_id  :integer
+#  card_number :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  member_type :integer
+#
+
 class Membership < ActiveRecord::Base
   attr_accessible :account_id, :card_number, :member_type
   validates_presence_of :card_number, :member_type
