@@ -10,6 +10,8 @@
 #  regular_price     :float            default(0.0)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  mytype            :string(255)      default("service")
+#  service_id        :integer
 #
 
 require 'spec_helper'

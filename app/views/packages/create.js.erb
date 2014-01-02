@@ -1,0 +1,7 @@
+<% if @package.errors.size == 0 %>
+  $("#package-list").html("<%= escape_javascript(render :partial => 'package_list') %>");
+  $("#add-package").dialog("close");
+  initializeDataTable();
+<% else %>
+  $("#add-package #error-message").html("<%= escape_javascript(render :partial => 'error_message', :locals => {:errors => @package.errors} ) %>")
+<% end %>

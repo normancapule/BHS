@@ -1,0 +1,28 @@
+<div class="control-group error">
+  <%= f.label :name, :class=>"bold" %>*<br />
+  <%= f.text_field :name %>
+</div>
+
+<div class="regular-options">
+  <%= f.label :regular_price %><br />
+  <%= f.text_field :regular_price %>
+</div>
+
+<div class="service-list">
+  <ul>
+    <% Service.services.order(:name).each do |s| %>
+      <li>
+        <% if package.id.nil? %>
+          <%= check_box_tag 'selected_service[]', s.id %>
+        <% else %>
+          <%= check_box_tag 'selected_service[]', s.id, package.services.include?(s) %>
+        <% end %>
+        <%= label_tag s.name %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="hidden">
+  <%= f.text_field :mytype, value: "package" %>
+</div>

@@ -5,7 +5,7 @@ gem 'rails', '3.2.15'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'rb-readline'
+gem 'rb-readline', '~> 0.4.2'
 gem 'pg'
 gem 'devise'
 gem 'jquery-rails', '= 2.1.2'

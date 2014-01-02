@@ -11,7 +11,7 @@ class ServiceListDatatable
     {
       sEcho: params[:sEcho].to_i,
       iTotalRecords: services.count,
-      iTotalDisplayRecords: services.size,
+      iTotalDisplayRecords: services.total_entries,
       aaData: data
     }
   end
@@ -47,7 +47,7 @@ private
   end
 
   def fetch_services
-    services = @customer ? Service.get_services(@customer) : Service.scoped
+    services = @customer ? Service.get_services(@customer) : Service.services
     if params[:sSearch].present?
       services = services.where(['name LIKE :search',
                                   search: "%#{params[:sSearch]}%"])
@@ -57,7 +57,7 @@ private
     elsif sort_column and sort_direction
       services = services.order("#{sort_column} #{sort_direction}")
     end
-    services
+    services.page(page).per_page(per_page)
   end
 
   def sort_column

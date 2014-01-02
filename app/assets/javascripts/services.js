@@ -59,7 +59,6 @@ function initializeDataTable() {
   $("#service-table").dataTable({
     "sDom": "<'row-fluid'<f>r>t<'row-fluid'<l><p>>",
     "sPaginationType": "bootstrap",
-    "iDisplayLength": 10,
     "bProcessing": true,
     "bServerSide": true,
     "sAjaxSource": $("#service-table").data("source"),

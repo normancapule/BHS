@@ -10,12 +10,18 @@
 #  regular_price     :float            default(0.0)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  mytype            :string(255)      default("service")
+#  service_id        :integer
 #
 
 class Service < ActiveRecord::Base
-  attr_accessible :member_price_eve, :member_price_morn, :name, :regular_price, :service_type_id
-  validates_presence_of :member_price_eve, :member_price_morn, :name, :regular_price, :service_type_id
+  attr_accessible :member_price_eve, :member_price_morn, :name, :regular_price, :service_type_id, :mytype
+  validates_presence_of :member_price_eve, :member_price_morn, :name, :regular_price, :mytype
   validates_uniqueness_of :name
+
+  has_many :services, foreign_key: :service_id, class_name: "Service"
+  scope :services, lambda { where "mytype = 'service'" }
+  scope :packages, lambda { where "mytype = 'package'" }
 
   def self.types
     {"1"=>"Member and Non-Member", "2"=> "Members Only"}
@@ -26,11 +32,11 @@ class Service < ActiveRecord::Base
   end
   
   def self.get_services_for_all
-    where "service_type_id = 1"
+    where "service_type_id = 1 or mytype = 'package'"
   end
 
   def self.get_services_for_members
-    where "service_type_id = 1 OR service_type_id = 2"
+    where "service_type_id = 1 OR service_type_id = 2 or mytype = 'package'"
   end
 
   def service_type
@@ -43,13 +49,24 @@ class Service < ActiveRecord::Base
   def members_only?
     service_type_id == 2
   end
-
+  
+  def package? 
+    mytype == "package"
+  end
+  
+  def formatted_services
+    services.pluck(:name).join(", ")
+  end
   def get_price(am_pm, customer)
-    case am_pm.to_i
-      when 1
-        customer.member? ? member_price_morn : regular_price
-      when 2
-        customer.member? ? member_price_eve : regular_price
+    if package?
+      regular_price
+    else
+      case am_pm.to_i
+        when 1
+          customer.member? ? member_price_morn : regular_price
+        when 2
+          customer.member? ? member_price_eve : regular_price
+      end
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928021659) do
+ActiveRecord::Schema.define(:version => 20140102112251) do
 
   create_table "accounts", :force => true do |t|
     t.string   "firstname"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(:version => 20120928021659) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "role_id"
+  end
+
+  create_table "data_streams", :force => true do |t|
+    t.integer  "client_count"
+    t.date     "stream_date"
+    t.decimal  "gross",        :precision => 8, :scale => 2
+    t.decimal  "net",          :precision => 8, :scale => 2
+    t.decimal  "expenses",     :precision => 8, :scale => 2
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "memberships", :force => true do |t|
@@ -47,9 +57,13 @@ ActiveRecord::Schema.define(:version => 20120928021659) do
     t.float    "member_price_morn", :default => 0.0
     t.float    "member_price_eve",  :default => 0.0
     t.float    "regular_price",     :default => 0.0
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "mytype",            :default => "service"
+    t.integer  "service_id"
   end
+
+  add_index "services", ["service_id"], :name => "index_services_on_service_id"
 
   create_table "transaction_details", :force => true do |t|
     t.integer  "transaction_id"

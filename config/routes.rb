@@ -32,11 +32,17 @@ Bhs::Application.routes.draw do
       get 'add'
     end
   end
+  resources :packages do
+    collection do
+      get 'add'
+    end
+  end
   resources :services do
     collection do
       get 'add'
     end
   end
+  resources :reports
   resources :therapists do
     collection do
       get 'add'
