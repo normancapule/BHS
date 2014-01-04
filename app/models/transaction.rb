@@ -24,6 +24,7 @@ class Transaction < ActiveRecord::Base
   has_many :transaction_details, :dependent => :destroy
   has_many :services, :through => :transaction_details
 
+  scope :of_date, lambda {|date| where("transac_date = ?", date)}
   scope :custom_sort, lambda{|sort_column, sort_direction|
     case sort_column
       when "customer", "therapist"
@@ -67,9 +68,5 @@ class Transaction < ActiveRecord::Base
 
   def self.types
     {"1" => "AM", "2" => "PM"}
-  end
-
-  def self.of_date(date)
-    where("transac_date = ?", date)
   end
 end

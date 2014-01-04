@@ -25,6 +25,8 @@ class Account < ActiveRecord::Base
   has_many :customer_transactions, :class_name => "Transaction", :foreign_key => "customer_id"
   has_many :therapist_transactions, :class_name => "Transaction", :foreign_key => "therapist_id"
   
+  scope :therapists, lambda{ where("role_id = '3'")}
+
   def unique_name
     if Account.where("firstname like ? and lastname like ?", firstname, lastname).reject{|x| x.id == self.id}.size > 0
       errors.add :name, "Another account already has that name."
@@ -77,12 +79,20 @@ class Account < ActiveRecord::Base
   def transactions
     case role_id
       when 1
-        Transaction.all
+        Transaction.scoped
       when 2
         customer_transactions
       when 3
         therapist_transactions
     end
+  end
+  
+  def package_transactions(date=Date.current)
+    transactions.of_date(date).reject{|t| t.services.count < 4 and !t.services.map(&:mytype).include?("package")}
+  end
+  
+  def push_transactions(date=Date.current)
+    transactions.of_date(date).reject{|t| t.services.count > 3 or t.services.count < 2 or t.services.map(&:mytype).include?("package")}
   end
 
   def name

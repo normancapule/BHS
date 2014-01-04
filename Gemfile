@@ -15,6 +15,7 @@ gem 'therubyracer', '= 0.10.2'
 gem 'will_paginate'
 gem 'thin'
 gem 'annotate'
+gem 'haml'
 
 group :test, :development do
   gem 'factory_girl_rails'
@@ -28,7 +29,7 @@ group :assets do
   gem 'coffee-rails', '>= 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails', '= 2.1.3'
-  gem 'jquery-datatables-rails', :git => 'https://github.com/rweng/jquery-datatables-rails.git'
+  gem 'jquery-datatables-rails'
   gem 'less-rails'
 end
 

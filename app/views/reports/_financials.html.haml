@@ -1,0 +1,12 @@
+.table-headers
+  %a.btn.btn-default{href: "javascript:void(0)"} Refresh
+%table#financials-table.table.table-striped.table-bordered.table-hover{"data-source" => financials_reports_url(format: 'json')}
+  %thead
+    %th ID
+    %th # of Clients
+    %th Date
+    %th Gross
+    %th Expenses
+    %th Net
+  %tbody
+

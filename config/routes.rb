@@ -42,7 +42,15 @@ Bhs::Application.routes.draw do
       get 'add'
     end
   end
-  resources :reports
+  resources :reports do
+    collection do
+      get 'performance'
+      get 'refresh_performance'
+      get 'financials'
+      get 'refresh_financials'
+      post 'update_financials'
+    end
+  end
   resources :therapists do
     collection do
       get 'add'

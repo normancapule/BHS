@@ -1,0 +1,10 @@
+.table-headers
+  %span.label.label-info
+    #{@date}
+  = text_field_tag :date, "", :id => "performance-date-selector", :class => "hidden"
+%table#performance-table.table.table-striped.table-bordered.table-hover{"data-source" => performance_reports_url(format: 'json', date: params[:date])}
+  %thead
+    %th Therapist
+    %th Push
+    %th Package
+  %tbody

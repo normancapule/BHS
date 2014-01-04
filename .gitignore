@@ -20,3 +20,4 @@ log/*.log
 coverage/
 .sass-cache/
 public/assets/
+tags

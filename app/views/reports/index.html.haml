@@ -1,0 +1,12 @@
+.packages-content
+  %h2 Repots
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", href: "#performance"} Therapist Performance
+    %li
+      %a{"data-toggle" => "tab", href: "#financials"} Financials
+  .tab-content
+    #performance.tab-pane.active
+      = render "performance"
+    #financials.tab-pane
+      = render "financials"

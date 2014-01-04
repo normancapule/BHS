@@ -1,3 +1,11 @@
-// Place all the styles related to the Reports controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.packages-content {
+  .tab-content {
+    overflow: hidden;
+    #financials-table {
+      thead th:first-child { display: none; }
+      tbody tr td:first-child { display: none; }
+    }
+  }
+  .ui-datepicker-trigger { cursor: pointer;}
+}
+
