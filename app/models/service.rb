@@ -11,7 +11,6 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  mytype            :string(255)      default("service")
-#  service_id        :integer
 #
 
 class Service < ActiveRecord::Base
@@ -19,7 +18,15 @@ class Service < ActiveRecord::Base
   validates_presence_of :member_price_eve, :member_price_morn, :name, :regular_price, :mytype
   validates_uniqueness_of :name
 
-  has_many :services, foreign_key: :service_id, class_name: "Service"
+  has_and_belongs_to_many :packages,
+          association_foreign_key: 'package_id',
+          class_name: "Service",
+          join_table: "package_services"
+  has_and_belongs_to_many :services,
+          foreign_key: 'package_id',
+          association_foreign_key: 'service_id',
+          class_name: "Service",
+          join_table: "package_services"
   scope :services, lambda { where "mytype = 'service'" }
   scope :packages, lambda { where "mytype = 'package'" }
 

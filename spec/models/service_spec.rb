@@ -11,7 +11,6 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  mytype            :string(255)      default("service")
-#  service_id        :integer
 #
 
 require 'spec_helper'

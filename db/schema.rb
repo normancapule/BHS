@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140102112251) do
+ActiveRecord::Schema.define(:version => 20140119072329) do
 
   create_table "accounts", :force => true do |t|
     t.string   "firstname"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20140102112251) do
     t.integer  "member_type"
   end
 
+  create_table "package_services", :id => false, :force => true do |t|
+    t.integer "package_id"
+    t.integer "service_id"
+  end
+
+  add_index "package_services", ["package_id"], :name => "index_package_services_on_package_id"
+  add_index "package_services", ["service_id"], :name => "index_package_services_on_service_id"
+
   create_table "reservations", :force => true do |t|
     t.integer  "number_people"
     t.datetime "datetime"
@@ -60,10 +68,7 @@ ActiveRecord::Schema.define(:version => 20140102112251) do
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
     t.string   "mytype",            :default => "service"
-    t.integer  "service_id"
   end
-
-  add_index "services", ["service_id"], :name => "index_services_on_service_id"
 
   create_table "transaction_details", :force => true do |t|
     t.integer  "transaction_id"
